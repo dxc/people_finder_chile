@@ -1,0 +1,21 @@
+CREATE TABLE `people` (
+  `id` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `name` text COLLATE latin1_spanish_ci,
+  `info_location` text COLLATE latin1_spanish_ci,
+  `url` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `source_date` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `last_status` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `status_author` text COLLATE latin1_spanish_ci,
+  `status_date` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `status_found` int(11) DEFAULT '0',
+  `cont` int(11) DEFAULT NULL,
+  `last_known_location` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `cont_note` int(11) DEFAULT '0',
+  `home_street` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `home_neighborhood` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `home_city` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `home_state` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `people_name_fulltext_index` (`name`),
+  FULLTEXT KEY `people_info_location_fulltext_index` (`info_location`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
