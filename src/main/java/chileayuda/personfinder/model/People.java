@@ -86,7 +86,7 @@ public class People {
     public JSONObject toJson(boolean includeState, int stateCount) throws PeopleFinderException {
         try {
             JSONObject PeopleJson = new JsonListMap();
-
+            PeopleJson.put("user", user.id);
             PeopleJson.put("Id", Id == null ? "" : Id);
             PeopleJson.put("fullname", fullname == null ? "" : fullname);
             PeopleJson.put("info_location", info_location == null ? "" : info_location);
@@ -201,7 +201,7 @@ public class People {
             {
                 throw new PeopleFinderException("Message user id ('user') is missing");
             }
-            user = servicePeopleFinder.getUser(userId);
+            user = servicePeopleFinder.serviceUser.getUser(userId);
             if(user==User.noUser)
             {
                 throw  new PeopleFinderException("Message user id does not exist: '"+userId+"'");
@@ -308,7 +308,7 @@ public class People {
             Peoplehome_state="";
         }
         // Validate keys
-        JsonUtils.validateKeys(agentJson, "People", new ArrayList<String>(Arrays.asList(
+        JsonUtils.validateKeys(agentJson, "People Message", new ArrayList<String>(Arrays.asList(
                 "user", "Id", "fullname", "info_location", "uri", "source_date",
                 "last_status", "status_author", "status_date", "status_found",
                 "cont", "last_known_location", "cont_note", "home_street","home_neighborhood","home_city","home_state")));

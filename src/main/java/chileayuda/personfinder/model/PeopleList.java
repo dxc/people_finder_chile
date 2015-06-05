@@ -40,13 +40,14 @@ public class PeopleList  implements Iterable<People>{
     {
         return peoples.get(index);
     }
-    public People put(People agentMessage)
+
+    public People put(People people)
     {
-        if(!peoples.contains(agentMessage))
+        if(!peoples.contains(people))
         {
-            peoples.add(agentMessage);
+            peoples.add(people);
         }
-        return agentMessage;
+        return people;
     }
     public void remove(String peopleId)
     {

@@ -1,14 +1,10 @@
 package chileayuda.personfinder.controller;
 
-import chileayuda.personfinder.service.ServicePeopleFinder;
-import chileayuda.personfinder.utils.config.ParserException;
-import chileayuda.personfinder.utils.config.PeopleFinderBadRequestException;
-import chileayuda.personfinder.utils.config.PeopleFinderException;
-import chileayuda.personfinder.utils.config.TokenizerException;
-import chileayuda.personfinder.utils.persistence.persistenfile.PersistentFileException;
 import chileayuda.personfinder.model.User;
+import chileayuda.personfinder.service.ServicePeopleFinder;
 import chileayuda.personfinder.utils.NameValue;
 import chileayuda.personfinder.utils.Utils;
+import chileayuda.personfinder.utils.config.PeopleFinderBadRequestException;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,8 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.text.ParseException;
 
 /**
  * Created by teo on 05/06/15.
@@ -31,15 +25,15 @@ import java.text.ParseException;
 @Controller
 public class UserController {
     protected static Logger logger = Logger.getLogger(UserController.class);
-    public ServicePeopleFinder modelPeopleFinder;
     public Utils util = new Utils();
-    @RequestMapping(value = "/" ,produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String home() throws ParserException, InterruptedException, ParseException, PeopleFinderException, TokenizerException, PersistentFileException, IOException, JSONException
+    public ServicePeopleFinder servicePeopleFinder;
 
+    @RequestMapping(value = "/" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody String home() throws JSONException
     {
-        ServicePeopleFinder modelPeopleFinder1 =new ServicePeopleFinder();
-        modelPeopleFinder1.start();
-        JSONObject configJson = modelPeopleFinder1.config.toJson();
+        ServicePeopleFinder       servicePeopleFinder = new ServicePeopleFinder(true);
+
+        JSONObject configJson = servicePeopleFinder.config.toJson();
         return configJson.toString();
     }
     @RequestMapping(value = "/users", method = RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_VALUE)
@@ -47,9 +41,8 @@ public class UserController {
     public @ResponseBody String postUser(HttpServletRequest request) throws Exception {
         // User can specify parameters in JSON or as query parameters
         // Query overrides JSON if query parameter is non-null
-        ServicePeopleFinder modelPeopleFinder1 =new ServicePeopleFinder();
-        modelPeopleFinder1.start();
-        JSONObject userJson = util.getJsonRequest(request);
+        ServicePeopleFinder servicePeopleFinder =new ServicePeopleFinder(true);
+         JSONObject userJson = util.getJsonRequest(request);
         String id = request.getParameter("id");
         if (id == null)
             id = userJson.optString("id");
@@ -135,7 +128,7 @@ public class UserController {
         } else if (password.trim().length() < User.MIN_ID_LENGTH) {
             throw new PeopleFinderBadRequestException(
                     "Password must be at least 4 characters");
-        } else if (modelPeopleFinder1.users.containsKey(id.trim())) {
+        } else if (servicePeopleFinder.users.containsKey(id.trim())) {
             throw new PeopleFinderBadRequestException(
                     "User with that id already exists");
         } else {
@@ -148,7 +141,7 @@ public class UserController {
                     email, incognito, comment, true, true, true, null,
                     null);
             newUser.generateSha();
-            modelPeopleFinder1.addUser(newUser);
+            servicePeopleFinder.serviceUser.addUser(newUser);
             // TODO: Set Location header with URL
             JSONObject message = new JSONObject();
             message.put("message", "Save successful");
@@ -159,11 +152,9 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody String getUsers() throws Exception {
-        ServicePeopleFinder modelPeopleFinder1 =new ServicePeopleFinder();
-        modelPeopleFinder1.start();
-
+        ServicePeopleFinder servicePeopleFinder =new ServicePeopleFinder(true);
         JSONArray usersArrayJson = new JSONArray();
-        for (NameValue<User> userIdValue : modelPeopleFinder1.users) {
+        for (NameValue<User> userIdValue : servicePeopleFinder.users) {
             User user = userIdValue.value;
             JSONObject userJson = new JSONObject();
             userJson.put("id", user.id);

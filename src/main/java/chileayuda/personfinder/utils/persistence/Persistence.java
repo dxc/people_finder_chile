@@ -18,14 +18,14 @@ package chileayuda.personfinder.utils.persistence;
 
 
 import chileayuda.personfinder.model.People;
+import chileayuda.personfinder.model.User;
 import chileayuda.personfinder.service.ServicePeopleFinder;
+import chileayuda.personfinder.utils.ListMap;
 import chileayuda.personfinder.utils.config.ParserException;
 import chileayuda.personfinder.utils.config.PeopleFinderException;
 import chileayuda.personfinder.utils.config.TokenizerException;
 import chileayuda.personfinder.utils.persistence.persistenfile.PersistentFile;
 import chileayuda.personfinder.utils.persistence.persistenfile.PersistentFileException;
-import chileayuda.personfinder.model.User;
-import chileayuda.personfinder.utils.ListMap;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,13 +38,13 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Persistence {
-   public ServicePeopleFinder modelPeopleFinder;
-    public String path;
-    public PersistentFile file;
-    static final Logger log = Logger.getLogger(Persistence.class);
+ public ServicePeopleFinder servicePeopleFinder;
+ public String path;
+ public PersistentFile file;
+ static final Logger log = Logger.getLogger(Persistence.class);
 
     public Persistence(ServicePeopleFinder modelPeopleFinder, String path) throws PeopleFinderException, ParseException, TokenizerException, ParserException {
-        this.modelPeopleFinder =modelPeopleFinder;
+        this.servicePeopleFinder =modelPeopleFinder;
         this.path = path;
         initialize();
     }
@@ -66,7 +66,7 @@ public class Persistence {
                 loadAllTables();
             } else {
                 // No, create a new persistent file for this agent server
-                List<String> tableNames = Arrays.asList("config", "users");
+                List<String> tableNames = Arrays.asList("config", "users","people");
                 file.create(path, "People Finder", "1.0", tableNames);
 
                 // And open it
@@ -146,7 +146,7 @@ public class Persistence {
 
     public void loadAllTables() throws PeopleFinderException, ParseException, TokenizerException, ParserException {
        loadUsers();
-
+        loadPeople();
         // TODO: Status of the scheduler - is it suspended, when is it started?
         // TODO: What to do about pending activities - store/load them? Or, can they be ignored?
     }
@@ -156,7 +156,7 @@ public class Persistence {
             // Load all users
             for (String userId : file.iterable("users")) {
                 String userJsonSource = file.get("users", userId);
-                      modelPeopleFinder.recreateUser(userJsonSource);
+                servicePeopleFinder.serviceUser.recreateUser(userJsonSource);
 
             }
         } catch (PersistentFileException e) {
@@ -170,6 +170,26 @@ public class Persistence {
             throw new PeopleFinderException("JSONException loading users from persistent store: " + e.getMessage());
         }
     }
+    public void loadPeople() throws PeopleFinderException, ParseException, ParserException, TokenizerException {
+        try {
+            // Load all Peoples
+            for (String PeopleId : file.iterable("people")) {
+                String JsonSource = file.get("people", PeopleId);
+                servicePeopleFinder.servicePeople.recreatePeopler(JsonSource);
+
+            }
+        } catch (PersistentFileException e) {
+            e.printStackTrace();
+            throw new PeopleFinderException("PersistentFileException loading Peoples: " + e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new PeopleFinderException("IOException loading Peoples from persistent store: " + e.getMessage());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            throw new PeopleFinderException("JSONException loading Peoples from persistent store: " + e.getMessage());
+        }
+    }
+
 
 
 }
