@@ -35,8 +35,11 @@ public class People {
     public String home_neighborhood;
     public String home_city;
     public String home_state;
-
-    public People(String Id,
+    public ServicePeopleFinder servicePeopleFinder;
+    public User user;
+    public People(ServicePeopleFinder servicePeopleFinder,
+                  User user,
+                  String Id,
                   String fullname,
                   String info_location,
                   String uri,
@@ -52,6 +55,8 @@ public class People {
                   String home_neighborhood,
                   String home_city,
                   String home_state) {
+        this.servicePeopleFinder=servicePeopleFinder;
+        this.user=user==null?User.noUser:user;
         this.Id = Id;
         this.fullname = fullname;
         this.info_location = info_location;
@@ -203,114 +208,115 @@ public class People {
             }
         }
 
-        // Parse the message sender
-        String messageSender=agentJson.optString("sender",null);
-        if(!update &&(messageSender==null) || messageSender.trim().length()==0)
+        // Parse the People Id
+        String PeopleId=agentJson.optString("Id",null);
+        if(!update &&(PeopleId==null) || PeopleId.trim().length()==0)
         {
-            messageSender="";
+            PeopleId="";
         }
-        // Parse the message receiver
-        String messageReceiver=agentJson.optString("receiver",null);
+        // Parse the People fullname
+        String Peoplefullname=agentJson.optString("fullname",null);
+        if(!update &&(Peoplefullname==null) || Peoplefullname.trim().length()==0)
         {
-            if(!update &&(messageReceiver==null)|| messageReceiver.trim().length()==0)
-            {
-                messageReceiver="";
-            }
-        }
-        // Parse the message replyTo
-        String messageReplyTo=agentJson.optString("replyTo",null);
-        {
-            if(!update &&(messageReplyTo==null)||messageReplyTo.trim().length()==0)
-            {
-                messageReplyTo="";
-            }
-        }
-        //Parse the message conversationId
-        String messageConversationId=agentJson.optString("conversationId",null);
-        {
-            if(!update &&(messageConversationId==null) || messageConversationId.trim().length()==0)
-            {
-                messageConversationId="";
-            }
-        }
-        //Parse the message content
-        String messageContent=agentJson.optString("content",null);
-        {
-            if(!update &&(messageContent==null) || messageContent.trim().length()==0)
-            {
-                messageContent="";
-            }
-        }
-        //Parse the message lenguaje
-        String messageLenguaje=agentJson.optString("lenguaje",null);
-        {
-            if(!update &&(messageLenguaje==null) || messageLenguaje.trim().length()==0)
-            {
-                messageLenguaje="";
-            }
+            Peoplefullname="";
         }
 
-        //Parse the message enconding
-        String messageEnconding=agentJson.optString("enconding",null);
+        // Parse the People info_location
+        String Peopleinfo_location=agentJson.optString("info_location",null);
+        if(!update &&(Peopleinfo_location==null) || Peopleinfo_location.trim().length()==0)
         {
-            if(!update &&(messageEnconding==null) || messageEnconding.trim().length()==0)
-            {
-                messageEnconding="";
-            }
+            Peopleinfo_location="";
         }
-        //Parse the message ontology
-        String messageOntology=agentJson.optString("ontology",null);
+        // Parse the People uri
+        String Peopleuri=agentJson.optString("uri",null);
+        if(!update &&(Peopleuri==null) || Peopleuri.trim().length()==0)
         {
-            if(!update &&(messageOntology==null) || messageOntology.trim().length()==0)
-            {
-                messageOntology="";
-            }
+            Peopleuri="";
         }
-        //Parse the message protocol
-        String messageProtocol=agentJson.optString("protocol",null);
+        // Parse the People source_date
+        String Peoplesource_date=agentJson.optString("source_date",null);
+        if(!update &&(Peoplesource_date==null) || Peoplesource_date.trim().length()==0)
         {
-            if(!update &&(messageProtocol==null) || messageProtocol.trim().length()==0)
-            {
-                messageProtocol="";
-            }
+            Peoplesource_date="";
         }
 
-        //Parse the message replyWith
-        String messageReplyWith=agentJson.optString("replyWith",null);
+        // Parse the People last_status
+        String Peoplelast_status=agentJson.optString("last_status",null);
+        if(!update &&(Peoplelast_status==null) || Peoplelast_status.trim().length()==0)
         {
-            if(!update &&(messageReplyWith==null) || messageReplyWith.trim().length()==0)
-            {
-                messageReplyWith="";
-            }
+            Peoplelast_status="";
+        }
+        // Parse the People status_author
+        String Peoplestatus_author=agentJson.optString("status_author",null);
+        if(!update &&(Peoplestatus_author==null) || Peoplestatus_author.trim().length()==0)
+        {
+            Peoplestatus_author="";
+        }
+        // Parse the People status_date
+        String Peoplestatus_date=agentJson.optString("status_date",null);
+        if(!update &&(Peoplestatus_date==null) || Peoplestatus_date.trim().length()==0)
+        {
+            Peoplestatus_date="";
         }
 
-        //Parse the message inReplyTo
-        String messageInReplyTo=agentJson.optString("inReplyTo",null);
+        // Parse the People status_found
+        String Peoplestatus_found=agentJson.optString("status_found",null);
+        if(!update &&(Peoplestatus_found==null) || Peoplestatus_found.trim().length()==0)
         {
-            if(!update &&(messageInReplyTo==null) || messageInReplyTo.trim().length()==0)
-            {
-                messageInReplyTo="";
-            }
+            Peoplestatus_found="";
         }
-
-        //Parse the message replyBy
-        String messageReplyBy=agentJson.optString("replyBy",null);
+        // Parse the People cont
+        String Peoplecont=agentJson.optString("cont",null);
+        if(!update &&(Peoplecont==null) || Peoplecont.trim().length()==0)
         {
-            if(!update &&(messageReplyBy==null) || messageReplyBy.trim().length()==0)
-            {
-                messageReplyBy="";
-            }
+            Peoplecont="";
+        }
+        // Parse the People last_known_location
+        String Peoplelast_known_locationt=agentJson.optString("last_known_location",null);
+        if(!update &&(Peoplelast_known_locationt==null) || Peoplelast_known_locationt.trim().length()==0)
+        {
+            Peoplelast_known_locationt="";
+        }
+        // Parse the People cont_note
+        String Peoplecont_note=agentJson.optString("cont_note",null);
+        if(!update &&(Peoplecont_note==null) || Peoplecont_note.trim().length()==0)
+        {
+            Peoplecont_note="";
+        }
+        // Parse the People home_street
+        String Peoplehome_street=agentJson.optString("home_street",null);
+        if(!update &&(Peoplehome_street==null) || Peoplehome_street.trim().length()==0)
+        {
+            Peoplehome_street="";
+        }
+        // Parse the People home_neighborhood
+        String Peoplehome_neighborhood=agentJson.optString("home_neighborhood",null);
+        if(!update &&(Peoplehome_neighborhood==null) || Peoplehome_neighborhood.trim().length()==0)
+        {
+            Peoplehome_neighborhood="";
+        }
+        // Parse the People home_city
+        String Peoplehome_city=agentJson.optString("home_city",null);
+        if(!update &&(Peoplehome_city==null) || Peoplehome_city.trim().length()==0)
+        {
+            Peoplehome_city="";
+        }
+        // Parse the People home_state
+        String Peoplehome_state=agentJson.optString("home_state",null);
+        if(!update &&(Peoplehome_state==null) || Peoplehome_state.trim().length()==0)
+        {
+            Peoplehome_state="";
         }
         // Validate keys
+        JsonUtils.validateKeys(agentJson, "People", new ArrayList<String>(Arrays.asList(
+                "user", "Id", "fullname", "info_location", "uri", "source_date",
+                "last_status", "status_author", "status_date", "status_found",
+                "cont", "last_known_location", "cont_note", "home_street","home_neighborhood","home_city","home_state")));
 
-        JsonUtils.validateKeys(agentJson, "Agent Message", new ArrayList<String>(Arrays.asList(
-                "user", "sender", "receiver", "replyTo", "conversationId",
-                "content", "lenguage", "encoding", "ontology",
-                "protocol", "replyWith", "inReplyTo", "replyBy")));
 
-        People agentPeople = new People(servicePeopleFinder,user,  messageSender, messageReceiver, messageReplyTo, messageConversationId,
-                messageContent, messageLenguaje, messageEnconding, messageOntology, messageProtocol, messageReplyWith, messageInReplyTo,
-                messageReplyBy, update, false);
+        People agentPeople = new People(servicePeopleFinder,user, PeopleId, Peoplefullname, Peopleinfo_location, Peopleuri, Peoplesource_date,
+                Peoplelast_status, Peoplestatus_author, Peoplestatus_date, Peoplestatus_found,
+                Peoplecont, Peoplelast_known_locationt, Peoplecont_note, Peoplehome_street,Peoplehome_neighborhood,Peoplehome_city,Peoplehome_state);
 
         // Return the new people
         return agentPeople;
