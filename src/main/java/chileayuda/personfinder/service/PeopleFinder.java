@@ -1,5 +1,6 @@
 package chileayuda.personfinder.service;
 
+import chileayuda.personfinder.model.IncidentList;
 import chileayuda.personfinder.model.PeopleList;
 import chileayuda.personfinder.model.User;
 import chileayuda.personfinder.utils.NameValueList;
@@ -14,16 +15,18 @@ import java.text.ParseException;
 /**
  * Created by teo on 05/06/15.
  */
-public class ServicePeopleFinder {
+public class PeopleFinder {
     public Persistence persistence;
     public PeoplefinderProperties peoplefinderProperties;
     public PeoplefinderConfig config;
     public ServiceUser serviceUser;
+    public ServiceIncident serviceIncident;
     public ServicePeople servicePeople;
     public NameValueList<User> users;
+    public NameValueList<IncidentList> incidents;
     public NameValueList<PeopleList> peoples;
-    static final Logger log = Logger.getLogger(ServicePeopleFinder.class);
-    public ServicePeopleFinder(boolean b) {
+    static final Logger log = Logger.getLogger(PeopleFinder.class);
+    public PeopleFinder(boolean b) {
         try {
             start();
         } catch (PeopleFinderException e) {
@@ -53,11 +56,14 @@ public class ServicePeopleFinder {
           // Initialize members
         this.users = new NameValueList<User>();
         this.peoples=new NameValueList<PeopleList>();
-         // Initialize agent server properties
+        this.incidents=new NameValueList<IncidentList> ();
 
+
+         // Initialize agent server properties
         peoplefinderProperties = new PeoplefinderProperties();
         serviceUser =new ServiceUser(this);
         servicePeople=new ServicePeople(this);
+        serviceIncident =new ServiceIncident(this);
         // Initialize persistence
         if (persistence == null) {
             persistence = new Persistence(this, getPersistentStorePath());

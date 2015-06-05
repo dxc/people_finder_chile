@@ -16,10 +16,10 @@ import java.text.ParseException;
  * Created by teo on 05/06/15.
  */
 public class ServicePeople {
-    public ServicePeopleFinder servicePeopleFinder;
+    public PeopleFinder servicePeopleFinder;
     static final Logger log = Logger.getLogger(ServicePeople.class);
 
-    public ServicePeople(ServicePeopleFinder servicePeopleFinder)
+    public ServicePeople(PeopleFinder servicePeopleFinder)
     {
         this.servicePeopleFinder=servicePeopleFinder;
     }

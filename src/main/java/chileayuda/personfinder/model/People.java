@@ -1,6 +1,6 @@
 package chileayuda.personfinder.model;
 
-import chileayuda.personfinder.service.ServicePeopleFinder;
+import chileayuda.personfinder.service.PeopleFinder;
 import chileayuda.personfinder.utils.JsonListMap;
 import chileayuda.personfinder.utils.JsonUtils;
 import chileayuda.personfinder.utils.config.ParserException;
@@ -35,9 +35,9 @@ public class People {
     public String home_neighborhood;
     public String home_city;
     public String home_state;
-    public ServicePeopleFinder servicePeopleFinder;
+    public PeopleFinder servicePeopleFinder;
     public User user;
-    public People(ServicePeopleFinder servicePeopleFinder,
+    public People(PeopleFinder servicePeopleFinder,
                   User user,
                   String Id,
                   String fullname,
@@ -109,7 +109,7 @@ public class People {
             throw new PeopleFinderException("JSON exception in Message.toJson -" + e.getMessage());
         }
     }
-    public void update(ServicePeopleFinder servicePeopleFinder, People people) throws JSONException, PeopleFinderException {
+    public void update(PeopleFinder servicePeopleFinder, People people) throws JSONException, PeopleFinderException {
         if(people.Id!= null);
         {
             this.Id=people.Id;
@@ -178,18 +178,18 @@ public class People {
         servicePeopleFinder.persistence.put(this);
     }
 
-    static public People fromJson(ServicePeopleFinder servicePeopleFinder, String agentJsonSource) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
+    static public People fromJson(PeopleFinder servicePeopleFinder, String agentJsonSource) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
         return fromJson(servicePeopleFinder, null, new JSONObject(agentJsonSource), false);
     }
 
-    static public People fromJson(ServicePeopleFinder servicePeopleFinder, User user, JSONObject agentJson) throws PeopleFinderException {
+    static public People fromJson(PeopleFinder servicePeopleFinder, User user, JSONObject agentJson) throws PeopleFinderException {
         return fromJson(servicePeopleFinder, user, agentJson, false);
     }
 
-    static public People fromJson(ServicePeopleFinder servicePeopleFinder, JSONObject agentJson) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
+    static public People fromJson(PeopleFinder servicePeopleFinder, JSONObject agentJson) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
         return fromJson(servicePeopleFinder, null, agentJson, false);
     }
-    static public People fromJson(ServicePeopleFinder servicePeopleFinder, User user, JSONObject agentJson, boolean update) throws PeopleFinderException {
+    static public People fromJson(PeopleFinder servicePeopleFinder, User user, JSONObject agentJson, boolean update) throws PeopleFinderException {
         // Parse the event
 
         // Parse the users

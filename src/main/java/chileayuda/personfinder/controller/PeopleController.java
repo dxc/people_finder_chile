@@ -3,7 +3,7 @@ package chileayuda.personfinder.controller;
 import chileayuda.personfinder.model.People;
 import chileayuda.personfinder.model.PeopleList;
 import chileayuda.personfinder.model.User;
-import chileayuda.personfinder.service.ServicePeopleFinder;
+import chileayuda.personfinder.service.PeopleFinder;
 import chileayuda.personfinder.utils.JsonListMap;
 import chileayuda.personfinder.utils.NameValue;
 import chileayuda.personfinder.utils.Utils;
@@ -31,7 +31,7 @@ public class PeopleController
     public Utils util = new Utils();
     @RequestMapping(value = "/people/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String postpeople(@PathVariable String id, HttpServletRequest request) throws Exception {
-        ServicePeopleFinder servicePeopleFinder =new ServicePeopleFinder(true);
+        PeopleFinder servicePeopleFinder =new PeopleFinder(true);
         User user = servicePeopleFinder.users.get(id);
         JSONObject peopleJson = util.getJsonRequest(request);
         if (peopleJson == null)
@@ -48,7 +48,7 @@ public class PeopleController
     }
     @RequestMapping(value = "/people/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String getAgentDefinitionName(@PathVariable String id) throws Exception {
-        ServicePeopleFinder servicePeopleFinder =new ServicePeopleFinder(true);
+        PeopleFinder servicePeopleFinder =new PeopleFinder(true);
         User user = servicePeopleFinder.users.get(id);
          // Get all agents for this user
         JSONArray peoplesArrayJson = new JSONArray();
@@ -69,7 +69,7 @@ public class PeopleController
     @RequestMapping(value = "/peoples", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public  @ResponseBody String getAgentDefinitions() throws JSONException {
         logger.info("Getting list of Peoples");
-        ServicePeopleFinder servicePeopleFinder =new ServicePeopleFinder(true);
+        PeopleFinder servicePeopleFinder =new PeopleFinder(true);
 
         JSONArray peoplesArrayJson = new JSONArray();
         // Get all Peoples for all users

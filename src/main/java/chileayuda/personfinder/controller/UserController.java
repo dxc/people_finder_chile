@@ -1,7 +1,7 @@
 package chileayuda.personfinder.controller;
 
 import chileayuda.personfinder.model.User;
-import chileayuda.personfinder.service.ServicePeopleFinder;
+import chileayuda.personfinder.service.PeopleFinder;
 import chileayuda.personfinder.utils.NameValue;
 import chileayuda.personfinder.utils.Utils;
 import chileayuda.personfinder.utils.config.PeopleFinderBadRequestException;
@@ -26,12 +26,12 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
     protected static Logger logger = Logger.getLogger(UserController.class);
     public Utils util = new Utils();
-    public ServicePeopleFinder servicePeopleFinder;
+    public PeopleFinder servicePeopleFinder;
 
     @RequestMapping(value = "/" ,produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String home() throws JSONException
     {
-        ServicePeopleFinder       servicePeopleFinder = new ServicePeopleFinder(true);
+        PeopleFinder servicePeopleFinder = new PeopleFinder(true);
 
         JSONObject configJson = servicePeopleFinder.config.toJson();
         return configJson.toString();
@@ -41,7 +41,7 @@ public class UserController {
     public @ResponseBody String postUser(HttpServletRequest request) throws Exception {
         // User can specify parameters in JSON or as query parameters
         // Query overrides JSON if query parameter is non-null
-        ServicePeopleFinder servicePeopleFinder =new ServicePeopleFinder(true);
+        PeopleFinder servicePeopleFinder =new PeopleFinder(true);
          JSONObject userJson = util.getJsonRequest(request);
         String id = request.getParameter("id");
         if (id == null)
@@ -152,7 +152,7 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody String getUsers() throws Exception {
-        ServicePeopleFinder servicePeopleFinder =new ServicePeopleFinder(true);
+        PeopleFinder servicePeopleFinder =new PeopleFinder(true);
         JSONArray usersArrayJson = new JSONArray();
         for (NameValue<User> userIdValue : servicePeopleFinder.users) {
             User user = userIdValue.value;

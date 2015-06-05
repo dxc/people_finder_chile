@@ -10,10 +10,10 @@ import org.json.JSONObject;
  * Created by teo on 05/06/15.
  */
 public class ServiceUser {
-    public ServicePeopleFinder servicePeopleFinder;
+    public PeopleFinder servicePeopleFinder;
     static final Logger log = Logger.getLogger(ServiceUser.class);
 
-    public ServiceUser(ServicePeopleFinder servicePeopleFinder)
+    public ServiceUser(PeopleFinder servicePeopleFinder)
     {
         this.servicePeopleFinder=servicePeopleFinder;
     }

@@ -17,7 +17,7 @@
 package chileayuda.personfinder.model;
 
 
-import chileayuda.personfinder.service.ServicePeopleFinder;
+import chileayuda.personfinder.service.PeopleFinder;
 import chileayuda.personfinder.utils.config.PeopleFinderException;
 import chileayuda.personfinder.utils.persistence.Persistence;
 import chileayuda.personfinder.utils.JsonUtils;
@@ -112,7 +112,7 @@ public class User {
         shaPassword = ShaUtils.createSha(password);
     }
 
-    public void update( ServicePeopleFinder modelUser, User updated) throws PeopleFinderException {
+    public void update( PeopleFinder modelUser, User updated) throws PeopleFinderException {
         // TODO: Only update time if there are any actual changes
         this.timeLastEdited = this.timeCreated;
         if (updated.password != null)

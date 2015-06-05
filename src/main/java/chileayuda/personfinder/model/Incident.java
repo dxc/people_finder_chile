@@ -1,6 +1,6 @@
 package chileayuda.personfinder.model;
 
-import chileayuda.personfinder.service.ServicePeopleFinder;
+import chileayuda.personfinder.service.PeopleFinder;
 import chileayuda.personfinder.utils.JsonListMap;
 import chileayuda.personfinder.utils.JsonUtils;
 import chileayuda.personfinder.utils.config.ParserException;
@@ -33,10 +33,10 @@ public class Incident {
     public String description;
     public String street;
     public String externalreport;
-    public ServicePeopleFinder servicePeopleFinder;
+    public PeopleFinder servicePeopleFinder;
     public User user;
 
-    public Incident(ServicePeopleFinder servicePeopleFinder,
+    public Incident(PeopleFinder servicePeopleFinder,
                     User user,
                     String incidentId,
                     String parentId,
@@ -102,7 +102,7 @@ public class Incident {
             throw new PeopleFinderException("JSON exception in Message.toJson -" + e.getMessage());
         }
     }
-    public void update(ServicePeopleFinder servicePeopleFinder, Incident incident) throws JSONException, PeopleFinderException {
+    public void update(PeopleFinder servicePeopleFinder, Incident incident) throws JSONException, PeopleFinderException {
 
         if (incident.incidentId != null) ;
         {
@@ -163,18 +163,18 @@ public class Incident {
         }
         servicePeopleFinder.persistence.put(this);
     }
-    static public Incident fromJson(ServicePeopleFinder servicePeopleFinder, String IncidentJsonSource) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
+    static public Incident fromJson(PeopleFinder servicePeopleFinder, String IncidentJsonSource) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
         return fromJson(servicePeopleFinder, null, new JSONObject(IncidentJsonSource), false);
     }
 
-    static public Incident fromJson(ServicePeopleFinder servicePeopleFinder, User user, JSONObject IncidentJson) throws PeopleFinderException {
+    static public Incident fromJson(PeopleFinder servicePeopleFinder, User user, JSONObject IncidentJson) throws PeopleFinderException {
         return fromJson(servicePeopleFinder, user, IncidentJson, false);
     }
 
-    static public Incident fromJson(ServicePeopleFinder servicePeopleFinder, JSONObject IncidentJson) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
+    static public Incident fromJson(PeopleFinder servicePeopleFinder, JSONObject IncidentJson) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
         return fromJson(servicePeopleFinder, null, IncidentJson, false);
     }
-    static public Incident fromJson(ServicePeopleFinder servicePeopleFinder, User user, JSONObject IncidentJson, boolean update) throws PeopleFinderException {
+    static public Incident fromJson(PeopleFinder servicePeopleFinder, User user, JSONObject IncidentJson, boolean update) throws PeopleFinderException {
            // Parse the users
         if (user == null) {
             String userId = IncidentJson.optString("user");

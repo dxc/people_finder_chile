@@ -1,6 +1,6 @@
 package chileayuda.personfinder.utils.config;
 
-import chileayuda.personfinder.service.ServicePeopleFinder;
+import chileayuda.personfinder.service.PeopleFinder;
 import chileayuda.personfinder.utils.persistence.persistenfile.PersistentFileException;
 import chileayuda.personfinder.utils.JsonListMap;
 import chileayuda.personfinder.utils.ListMap;
@@ -14,12 +14,12 @@ import java.io.IOException;
  * Created by teo on 05/06/15.
  */
 public class PeoplefinderConfig {
-    public ServicePeopleFinder modelPeopleFinder;
+    public PeopleFinder modelPeopleFinder;
     static final Logger log = Logger.getLogger(PeoplefinderConfig.class);
     public ListMap<String, String> config;
     public PeoplefinderProperties peoplefinderProperties;
 
-public PeoplefinderConfig(ServicePeopleFinder modelPeopleFinder)
+public PeoplefinderConfig(PeopleFinder modelPeopleFinder)
 {   this.modelPeopleFinder=modelPeopleFinder;
     this.config=new ListMap<String, String>();
 

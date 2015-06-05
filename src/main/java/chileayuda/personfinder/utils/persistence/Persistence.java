@@ -20,7 +20,7 @@ package chileayuda.personfinder.utils.persistence;
 import chileayuda.personfinder.model.Incident;
 import chileayuda.personfinder.model.People;
 import chileayuda.personfinder.model.User;
-import chileayuda.personfinder.service.ServicePeopleFinder;
+import chileayuda.personfinder.service.PeopleFinder;
 import chileayuda.personfinder.utils.ListMap;
 import chileayuda.personfinder.utils.config.ParserException;
 import chileayuda.personfinder.utils.config.PeopleFinderException;
@@ -39,12 +39,12 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Persistence {
- public ServicePeopleFinder servicePeopleFinder;
+ public PeopleFinder servicePeopleFinder;
  public String path;
  public PersistentFile file;
  static final Logger log = Logger.getLogger(Persistence.class);
 
-    public Persistence(ServicePeopleFinder modelPeopleFinder, String path) throws PeopleFinderException, ParseException, TokenizerException, ParserException {
+    public Persistence(PeopleFinder modelPeopleFinder, String path) throws PeopleFinderException, ParseException, TokenizerException, ParserException {
         this.servicePeopleFinder =modelPeopleFinder;
         this.path = path;
         initialize();
