@@ -17,6 +17,7 @@
 package chileayuda.personfinder.utils.persistence;
 
 
+import chileayuda.personfinder.model.Incident;
 import chileayuda.personfinder.model.People;
 import chileayuda.personfinder.model.User;
 import chileayuda.personfinder.service.ServicePeopleFinder;
@@ -130,6 +131,10 @@ public class Persistence {
     public void put(People people) throws PeopleFinderException {
         log.info("Init put people:" + people.Id + people.toJson().toString());
         put("people",  people.Id, people.toJson().toString());
+    }
+    public void put(Incident incident) throws PeopleFinderException {
+        log.info("Init put incident:" + incident.incidentId + incident.toJson().toString());
+        put("incident",  incident.incidentId, incident.toJson().toString());
     }
 
     public void put(String tableName, String key, String value) throws PeopleFinderException {

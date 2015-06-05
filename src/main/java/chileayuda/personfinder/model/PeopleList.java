@@ -51,17 +51,17 @@ public class PeopleList  implements Iterable<People>{
     }
     public void remove(String peopleId)
     {
-        People agentMessage=get(peopleId);
-        if(agentMessage!=null)
+        People people=get(peopleId);
+        if(people!=null)
         {
-            remove(agentMessage);
+            remove(people);
         }
     }
-    public void remove (People agentMessage)
+    public void remove (People people)
     {
-        if(agentMessage!=null)
+        if(people!=null)
         {
-            peoples.remove(agentMessage);
+            peoples.remove(people);
         }
     }
 
