@@ -20,7 +20,7 @@ public class ServiceIncident {
     {
         this.servicePeopleFinder=servicePeopleFinder;
     }
-    public void recreatePeopler(String PeopleJsonSource) throws JSONException, PeopleFinderException, ParseException, ParserException, TokenizerException {
+    public void recreateIncident(String PeopleJsonSource) throws JSONException, PeopleFinderException, ParseException, ParserException, TokenizerException {
         Incident incident = Incident.fromJson(servicePeopleFinder,new JSONObject(PeopleJsonSource));
         IncidentList usersIncidentList = new IncidentList();
         // Store the new incident for the user

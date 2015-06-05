@@ -15,8 +15,6 @@
  */
 
 package chileayuda.personfinder.utils.persistence;
-
-
 import chileayuda.personfinder.model.Incident;
 import chileayuda.personfinder.model.People;
 import chileayuda.personfinder.model.User;
@@ -30,7 +28,6 @@ import chileayuda.personfinder.utils.persistence.persistenfile.PersistentFileExc
 import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -67,7 +64,7 @@ public class Persistence {
                 loadAllTables();
             } else {
                 // No, create a new persistent file for this agent server
-                List<String> tableNames = Arrays.asList("config", "users","people");
+                List<String> tableNames = Arrays.asList("config", "users","people","incident");
                 file.create(path, "People Finder", "1.0", tableNames);
 
                 // And open it
@@ -152,8 +149,8 @@ public class Persistence {
     public void loadAllTables() throws PeopleFinderException, ParseException, TokenizerException, ParserException {
        loadUsers();
         loadPeople();
-        // TODO: Status of the scheduler - is it suspended, when is it started?
-        // TODO: What to do about pending activities - store/load them? Or, can they be ignored?
+        loadIncident();
+
     }
 
     public void loadUsers() throws PeopleFinderException {
@@ -181,6 +178,26 @@ public class Persistence {
             for (String PeopleId : file.iterable("people")) {
                 String JsonSource = file.get("people", PeopleId);
                 servicePeopleFinder.servicePeople.recreatePeopler(JsonSource);
+
+            }
+        } catch (PersistentFileException e) {
+            e.printStackTrace();
+            throw new PeopleFinderException("PersistentFileException loading Peoples: " + e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new PeopleFinderException("IOException loading Peoples from persistent store: " + e.getMessage());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            throw new PeopleFinderException("JSONException loading Peoples from persistent store: " + e.getMessage());
+        }
+    }
+
+    public void loadIncident() throws PeopleFinderException, ParseException, ParserException, TokenizerException {
+        try {
+            // Load all incidents
+            for (String incidentId : file.iterable("incident")) {
+                String JsonSource = file.get("incident", incidentId);
+                servicePeopleFinder.serviceIncident.recreateIncident(JsonSource);
 
             }
         } catch (PersistentFileException e) {

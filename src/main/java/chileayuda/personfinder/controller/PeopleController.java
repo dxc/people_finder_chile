@@ -30,7 +30,7 @@ public class PeopleController
     protected static Logger logger = Logger.getLogger(PeopleController.class);
     public Utils util = new Utils();
     @RequestMapping(value = "/people/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String postpeople(@PathVariable String id, HttpServletRequest request) throws Exception {
+    public @ResponseBody String postPeople(@PathVariable String id, HttpServletRequest request) throws Exception {
         PeopleFinder servicePeopleFinder =new PeopleFinder(true);
         User user = servicePeopleFinder.users.get(id);
         JSONObject peopleJson = util.getJsonRequest(request);
@@ -47,10 +47,10 @@ public class PeopleController
         return message.toString();
     }
     @RequestMapping(value = "/people/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String getAgentDefinitionName(@PathVariable String id) throws Exception {
+    public @ResponseBody String getPeoples(@PathVariable String id) throws Exception {
         PeopleFinder servicePeopleFinder =new PeopleFinder(true);
         User user = servicePeopleFinder.users.get(id);
-         // Get all agents for this user
+         // Get all peoples for this user
         JSONArray peoplesArrayJson = new JSONArray();
         for (People people  : servicePeopleFinder.peoples.get(user.id)) {
             // Generate JSON for short summary of people
@@ -67,14 +67,14 @@ public class PeopleController
 
     }
     @RequestMapping(value = "/peoples", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public  @ResponseBody String getAgentDefinitions() throws JSONException {
+    public  @ResponseBody String getPeoples() throws JSONException {
         logger.info("Getting list of Peoples");
         PeopleFinder servicePeopleFinder =new PeopleFinder(true);
 
         JSONArray peoplesArrayJson = new JSONArray();
         // Get all Peoples for all users
         for (NameValue<PeopleList> userPeoples : servicePeopleFinder.peoples) {
-            // Get all agents for this user
+            // Get all peoples for this user
             for (People people : servicePeopleFinder.peoples.get(userPeoples.name)) {
                 // Generate JSON for short summary of Peoples
                 JSONObject peopleJson = new JsonListMap();
