@@ -15,12 +15,12 @@ import java.text.ParseException;
 /**
  * Created by teo on 05/06/15.
  */
-public class ModelPeopleFinder {
+public class ServicePeopleFinder {
     public Persistence persistence;
     public PeoplefinderProperties peoplefinderProperties;
     public PeoplefinderConfig config;
     public NameValueList<User> users;
-    static final Logger log = Logger.getLogger(ModelPeopleFinder.class);
+    static final Logger log = Logger.getLogger(ServicePeopleFinder.class);
     public long startTime = 0;
 
     public void start()

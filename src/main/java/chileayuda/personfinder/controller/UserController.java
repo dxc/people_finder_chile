@@ -1,10 +1,10 @@
 package chileayuda.personfinder.controller;
 
+import chileayuda.personfinder.service.ServicePeopleFinder;
 import chileayuda.personfinder.utils.config.ParserException;
 import chileayuda.personfinder.utils.config.PeopleFinderBadRequestException;
 import chileayuda.personfinder.utils.config.PeopleFinderException;
 import chileayuda.personfinder.utils.config.TokenizerException;
-import chileayuda.personfinder.service.ModelPeopleFinder;
 import chileayuda.personfinder.utils.persistence.persistenfile.PersistentFileException;
 import chileayuda.personfinder.model.User;
 import chileayuda.personfinder.utils.NameValue;
@@ -31,13 +31,13 @@ import java.text.ParseException;
 @Controller
 public class UserController {
     protected static Logger logger = Logger.getLogger(UserController.class);
-    public ModelPeopleFinder modelPeopleFinder;
+    public ServicePeopleFinder modelPeopleFinder;
     public Utils util = new Utils();
     @RequestMapping(value = "/" ,produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String home() throws ParserException, InterruptedException, ParseException, PeopleFinderException, TokenizerException, PersistentFileException, IOException, JSONException
 
     {
-        ModelPeopleFinder modelPeopleFinder1 =new ModelPeopleFinder();
+        ServicePeopleFinder modelPeopleFinder1 =new ServicePeopleFinder();
         modelPeopleFinder1.start();
         JSONObject configJson = modelPeopleFinder1.config.toJson();
         return configJson.toString();
@@ -47,7 +47,7 @@ public class UserController {
     public @ResponseBody String postUser(HttpServletRequest request) throws Exception {
         // User can specify parameters in JSON or as query parameters
         // Query overrides JSON if query parameter is non-null
-        ModelPeopleFinder modelPeopleFinder1 =new ModelPeopleFinder();
+        ServicePeopleFinder modelPeopleFinder1 =new ServicePeopleFinder();
         modelPeopleFinder1.start();
         JSONObject userJson = util.getJsonRequest(request);
         String id = request.getParameter("id");
@@ -159,7 +159,7 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody String getUsers() throws Exception {
-        ModelPeopleFinder modelPeopleFinder1 =new ModelPeopleFinder();
+        ServicePeopleFinder modelPeopleFinder1 =new ServicePeopleFinder();
         modelPeopleFinder1.start();
 
         JSONArray usersArrayJson = new JSONArray();

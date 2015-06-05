@@ -17,10 +17,11 @@
 package chileayuda.personfinder.utils.persistence;
 
 
+import chileayuda.personfinder.model.People;
+import chileayuda.personfinder.service.ServicePeopleFinder;
 import chileayuda.personfinder.utils.config.ParserException;
 import chileayuda.personfinder.utils.config.PeopleFinderException;
 import chileayuda.personfinder.utils.config.TokenizerException;
-import chileayuda.personfinder.service.ModelPeopleFinder;
 import chileayuda.personfinder.utils.persistence.persistenfile.PersistentFile;
 import chileayuda.personfinder.utils.persistence.persistenfile.PersistentFileException;
 import chileayuda.personfinder.model.User;
@@ -37,12 +38,12 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Persistence {
-   public ModelPeopleFinder modelPeopleFinder;
+   public ServicePeopleFinder modelPeopleFinder;
     public String path;
     public PersistentFile file;
     static final Logger log = Logger.getLogger(Persistence.class);
 
-    public Persistence(ModelPeopleFinder modelPeopleFinder, String path) throws PeopleFinderException, ParseException, TokenizerException, ParserException {
+    public Persistence(ServicePeopleFinder modelPeopleFinder, String path) throws PeopleFinderException, ParseException, TokenizerException, ParserException {
         this.modelPeopleFinder =modelPeopleFinder;
         this.path = path;
         initialize();
@@ -125,6 +126,10 @@ public class Persistence {
     public void put(User user) throws PeopleFinderException {
         log.info("Init put Users:" + user.id + user.toJson().toString());
         put("users", user.id, user.toJson().toString());
+    }
+    public void put(People people) throws PeopleFinderException {
+        log.info("Init put people:" + people.Id + people.toJson().toString());
+        put("people",  people.Id, people.toJson().toString());
     }
 
     public void put(String tableName, String key, String value) throws PeopleFinderException {
