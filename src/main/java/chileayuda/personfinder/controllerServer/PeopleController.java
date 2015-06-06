@@ -1,4 +1,4 @@
-package chileayuda.personfinder.controller;
+package chileayuda.personfinder.controllerServer;
 
 import chileayuda.personfinder.model.People;
 import chileayuda.personfinder.model.PeopleList;
