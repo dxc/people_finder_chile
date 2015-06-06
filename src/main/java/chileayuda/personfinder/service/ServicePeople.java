@@ -28,7 +28,7 @@ public class ServicePeople {
         PeopleList usersPeopleList = new PeopleList();
         // Store the new people for the user
         usersPeopleList.put(people);
-        servicePeopleFinder.peoples.put(people.Id, usersPeopleList);
+        servicePeopleFinder.peoples.put(people.user.id, usersPeopleList);
     }
     public People addPeople(User user, JSONObject agentJson) throws RuntimeException, PeopleFinderException {
         // Parse the JSON for the people

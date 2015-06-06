@@ -25,7 +25,7 @@ public class ServiceIncident {
         IncidentList usersIncidentList = new IncidentList();
         // Store the new incident for the user
         usersIncidentList.put(incident);
-        servicePeopleFinder.incidents.put(incident.incidentId, usersIncidentList);
+        servicePeopleFinder.incidents.put(incident.user.id, usersIncidentList);
     }
     public Incident addIncident(User user, JSONObject agentJson) throws RuntimeException, PeopleFinderException {
         // Parse the JSON for the incident
