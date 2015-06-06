@@ -7,7 +7,6 @@ import chileayuda.personfinder.utils.Utils;
 import chileayuda.personfinder.utils.config.PeopleFinderBadRequestException;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,14 +23,6 @@ public class UserController {
     public Utils util = new Utils();
     public PeopleFinder servicePeopleFinder;
 
-    @RequestMapping(value = "/" ,produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String home() throws JSONException
-    {
-        PeopleFinder servicePeopleFinder = new PeopleFinder(true);
-
-        JSONObject configJson = servicePeopleFinder.config.toJson();
-        return configJson.toString();
-    }
     @RequestMapping(value = "/users", method = RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody String postUser(HttpServletRequest request) throws Exception {

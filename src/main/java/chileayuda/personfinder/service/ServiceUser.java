@@ -20,7 +20,6 @@ public class ServiceUser {
 
     public void recreateUser(String userJsonSource) throws JSONException, PeopleFinderException {
         User newUser = User.fromJson(new JSONObject(userJsonSource));
-
         servicePeopleFinder.users.put(newUser.id, newUser);
     }
     public User addUser(User user) throws PeopleFinderException {

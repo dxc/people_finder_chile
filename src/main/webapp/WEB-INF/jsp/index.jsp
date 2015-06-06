@@ -40,8 +40,8 @@
             </div>
             <div class="articleHolder primaryArticle" id="hurblanca2015Holder">
               <div class="article" id="idarticle">
-                    <div class="homeEventLong">{Title Incident}</div>
-                    <div class="homeEventDate">{Incident Date}</div>
+                    <div class="homeEventLong">{Tutorial para usar la API,(Utilizando algun cliente REST)}</div>
+
                     <div class="clearEm"></div>
                     <div class="articleActions">
                         <div class="articleActionsFlex">
@@ -61,6 +61,140 @@
                     </div>
                     <div class="articleBody">
                         <div class="articleContent">
+                            <p> Puedes ver el codigo en Github <a href="https://github.com/tchambil/people_finder_chile" TARGET="_blank">aqui</a>
+                            </p>
+                            <h2><u>1. Registro de Users</u></h2>
+                            <h2>  a. Crear usuarios</h2>
+                            <p> curl -X POST 'http://localhost:8080/users' -H Content-type:application/json -d</p>
+                            <div id="code1" class="syntaxhighlighter  jscript">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td class="gutter">
+                                            <div class="line number1 index0 alt0">1</div>
+                                            <div class="line number2 index1 alt1">2</div>
+                                            <div class="line number3 index2 alt2">3</div>
+                                            <div class="line number4 index3 alt3">4</div>
+                                            <div class="line number5 index4 alt4">5</div>
+                                            <div class="line number6 index5 alt5">6</div>
+
+                                        </td>
+                                        <td class="code">
+                                            <div class="container">
+                                                <div class="line number1 index0 alt0"><code class="jscript plain">{</code></div>
+                                                <div class="line number2 index1 alt1"><code class="jscript plain"> "id": "test-user-1",</code></div>
+                                                <div class="line number3 index2 alt2"><code class="jscript plain"> "password": "test-user-1"</code></div>
+                                                <div class="line number4 index3 alt3"><code class="jscript plain">}</code></div>
+                                                <div> <u>Datos soportados: </u></div>
+                                                <div class="line number5 index4 alt4"><code class="jscript plain"> (id,password,fullName,displayName,,
+                                                </code></div>
+                                                <div class="line number6 index5 alt5"><code class="jscript plain"> nickName,organization,organization)
+                                                </code></div>
+
+
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <h2>  b. Obtener usuarios Registrados</h2>
+                            <p> curl 'http://localhost:8080/users'</p>
+                            <h2>  c. Actualizar Registro</h2>
+                            <p> curl -X PUT 'http://localhost:8080/users' -H Content-type:application/json -d</p>
+                            <h2>   <u>2. Registro de Incidentes</u></h2>
+                            <h2>   a.Crear Incidentes</h2>
+                            <p> curl -X POST 'http://localhost:8080/incident/{idUser}' -H Content-type:application/json -d</p>
+                            <div id="code2" class="syntaxhighlighter  jscript">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td class="gutter">
+                                            <div class="line number1 index0 alt0">1</div>
+                                            <div class="line number2 index1 alt1">2</div>
+                                            <div class="line number3 index2 alt2">3</div>
+                                            <div class="line number4 index3 alt3">4</div>
+                                            <div class="line number5 index4 alt4">5</div>
+                                            <div class="line number6 index5 alt5">6</div>
+                                            <div class="line number7 index6 alt6">7</div>
+
+                                        </td>
+                                        <td class="code">
+                                            <div class="container">
+                                                <div class="line number1 index0 alt0"><code class="jscript plain">{</code></div>
+                                                <div class="line number2 index1 alt1"><code class="jscript plain"> "incidentId": "test-incident-1",</code></div>
+                                                <div class="line number3 index2 alt2"><code class="jscript plain"> "incidentName": "test-incident-Name"</code></div>
+                                                <div class="line number4 index3 alt3"><code class="jscript plain">}</code></div>
+                                                <div> <u>Datos soportados: </u></div>
+                                                <div class="line number5 index4 alt4"><code class="jscript plain"> (incidentId; parentId;searchId; incidentName;shortName;date;,
+                                                </code></div>
+                                                <div class="line number6 index5 alt5"><code class="jscript plain"> incidenttype;latitude;longitude; privategroup;
+                                                </code></div>
+                                                <div class="line number7 index6 alt6"><code class="jscript plain">  closed;description;street; externalreport;
+                                                </code></div>
+
+
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <h2>  b. Obtener Incidentes Registrados</h2>
+                            <p> curl 'http://localhost:8080/incidents' </p>
+                            <h2>  c. Actualizar Incidentes</h2>
+                            <p> curl -X PUT 'http://localhost:8080/users/incident/{idUser}' -H Content-type:application/json -d</p>
+                            <h2>   <u>3. Registro de Personas</u></h2>
+                            <h2>   a.Crear Personas</h2>
+                            <p> curl -X POST 'http://localhost:8080/incident/{idincident}/people/{idUser}' -H Content-type:application/json -d</p>
+                            <div id="code3" class="syntaxhighlighter  jscript">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td class="gutter">
+                                            <div class="line number1 index0 alt0">1</div>
+                                            <div class="line number2 index1 alt1">2</div>
+                                            <div class="line number3 index2 alt2">3</div>
+                                            <div class="line number4 index3 alt3">4</div>
+                                            <div class="line number5 index4 alt4">5</div>
+                                            <div class="line number6 index5 alt5">6</div>
+                                            <div class="line number7 index6 alt6">7</div>
+                                            <div class="line number8 index7 alt7">8</div>
+                                        </td>
+                                        <td class="code">
+                                            <div class="container">
+                                                <div class="line number1 index0 alt0"><code class="jscript plain">{</code></div>
+                                                <div class="line number2 index1 alt1"><code class="jscript plain"> "Id": "test-people-1",</code></div>
+                                                <div class="line number3 index2 alt2"><code class="jscript plain"> "fullname": "test-people-name"</code></div>
+                                                <div class="line number4 index3 alt3"><code class="jscript plain">}</code></div>
+                                                <div> <u>Datos soportados: </u></div>
+                                                <div class="line number5 index4 alt4"><code class="jscript string"> (Id, fullname, info_location, uri, source_date, last_status,
+                                                </code></div>
+                                                <div class="line number6 index5 alt5"><code class="jscript string"> status_author, status_date, status_found, cont,
+                                                </code></div>
+                                                <div class="line number7 index6 alt6"><code class="jscript string"> last_known_location, cont_note,  home_street
+                                                </code></div>
+                                                <div class="line number8 index7 alt7"><code class="jscript string"> home_neighborhood,  home_city,  home_state)
+                                                </code></div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                            <h2>  b. Obtener Personas Registrados</h2>
+                            <p> curl 'http://localhost:8080/incident/{idIncident}/peoples'</p>
+                            <h2>  c. Actualizar Personas</h2>
+                            <p> curl -X PUT 'http://localhost:8080/incident/{idincident}/people/{idUser}' -H Content-type:application/json -d</p>
+
                         </div>
                     </div>
                 </div>

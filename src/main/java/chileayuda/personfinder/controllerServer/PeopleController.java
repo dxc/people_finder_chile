@@ -25,7 +25,7 @@ public class PeopleController
 {
     protected static Logger logger = Logger.getLogger(PeopleController.class);
     public Utils util = new Utils();
-    @RequestMapping(value = "/people/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/incident/{idincident}/people/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String postPeople(@PathVariable String id, HttpServletRequest request) throws Exception {
         PeopleFinder servicePeopleFinder =new PeopleFinder(true);
         User user = servicePeopleFinder.users.get(id);
@@ -42,7 +42,7 @@ public class PeopleController
         message.put("message", "Add was successful");
         return message.toString();
     }
-    @RequestMapping(value = "/people/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/incident/{idincident}/people/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String getPeoples(@PathVariable String id) throws Exception {
         PeopleFinder servicePeopleFinder =new PeopleFinder(true);
         User user = servicePeopleFinder.users.get(id);
@@ -62,7 +62,7 @@ public class PeopleController
         return peoplesJson.toString();
 
     }
-    @RequestMapping(value = "/peoples", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/incident/{idincident}/peoples", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public  @ResponseBody String getPeoples() throws JSONException {
         logger.info("Getting list of Peoples");
         PeopleFinder servicePeopleFinder =new PeopleFinder(true);

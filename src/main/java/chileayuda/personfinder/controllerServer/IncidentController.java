@@ -1,7 +1,7 @@
 package chileayuda.personfinder.controllerServer;
 
 import chileayuda.personfinder.model.Incident;
-import chileayuda.personfinder.model.PeopleList;
+import chileayuda.personfinder.model.IncidentList;
 import chileayuda.personfinder.model.User;
 import chileayuda.personfinder.service.PeopleFinder;
 import chileayuda.personfinder.utils.JsonListMap;
@@ -68,9 +68,9 @@ public class IncidentController {
 
         JSONArray incidentsArrayJson = new JSONArray();
         // Get all incident for all users
-        for (NameValue<PeopleList> userPeoples : servicePeopleFinder.peoples) {
+        for (NameValue<IncidentList> userIncidents : servicePeopleFinder.incidents) {
             // Get all incident for this user
-            for (Incident incident : servicePeopleFinder.incidents.get(userPeoples.name)) {
+            for (Incident incident : servicePeopleFinder.incidents.get(userIncidents.name)) {
                 // Generate JSON for short summary of incident
                 JSONObject incidentJson = new JsonListMap();
                 incidentJson.put("user", incident.user.id);

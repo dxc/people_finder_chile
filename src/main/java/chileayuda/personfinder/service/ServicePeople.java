@@ -25,11 +25,24 @@ public class ServicePeople {
     }
     public void recreatePeopler(String PeopleJsonSource) throws JSONException, PeopleFinderException, ParseException, ParserException, TokenizerException {
         People people = People.fromJson(servicePeopleFinder,new JSONObject(PeopleJsonSource));
-        PeopleList usersPeopleList = new PeopleList();
-        // Store the new people for the user
-        usersPeopleList.put(people);
-        servicePeopleFinder.peoples.put(people.user.id, usersPeopleList);
+        recreatePeopler(people);
     }
+    public People recreatePeopler(People people) throws PeopleFinderException {
+        if (people != null) {
+            // Check if the user has any people yet
+            if (!servicePeopleFinder.peoples.containsKey(people.user.id)) {
+                // No, so create an empty people table for user
+                servicePeopleFinder.peoples.put(people.user.id, new PeopleList());
+            }
+            // Get people table for the user
+            PeopleList usersPeopleList = servicePeopleFinder.peoples.get(people.user.id);
+            // Store the new people for the user
+            usersPeopleList.put(people);
+         }
+        // Return the people itself
+        return people;
+    }
+
     public People addPeople(User user, JSONObject agentJson) throws RuntimeException, PeopleFinderException {
         // Parse the JSON for the people
         log.info("Parse the JSON for the people");

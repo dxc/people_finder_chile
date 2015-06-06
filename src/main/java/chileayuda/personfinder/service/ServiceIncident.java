@@ -22,11 +22,25 @@ public class ServiceIncident {
     }
     public void recreateIncident(String PeopleJsonSource) throws JSONException, PeopleFinderException, ParseException, ParserException, TokenizerException {
         Incident incident = Incident.fromJson(servicePeopleFinder,new JSONObject(PeopleJsonSource));
-        IncidentList usersIncidentList = new IncidentList();
-        // Store the new incident for the user
-        usersIncidentList.put(incident);
-        servicePeopleFinder.incidents.put(incident.user.id, usersIncidentList);
+        recreateIncident(incident);
+       }
+    public  Incident recreateIncident(Incident incident) throws PeopleFinderException {
+        if (incident != null) {
+            // Check if the user has any incident yet
+            if (!servicePeopleFinder.incidents.containsKey(incident.user.id)) {
+                // No, so create an empty incident table for user
+                servicePeopleFinder.incidents.put(incident.user.id, new IncidentList());
+            }
+            // Get incident table for the user
+            IncidentList usersincidenteList = servicePeopleFinder.incidents.get(incident.user.id);
+            // Store the new incident for the user
+            usersincidenteList.put(incident);
+            // Persist the new incident
+                }
+        // Return the incident itself
+        return incident;
     }
+
     public Incident addIncident(User user, JSONObject agentJson) throws RuntimeException, PeopleFinderException {
         // Parse the JSON for the incident
         log.info("Parse the JSON for the people");
