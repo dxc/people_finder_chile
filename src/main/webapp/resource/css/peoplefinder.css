@@ -170,38 +170,6 @@ a img {
     right: 0;
 }
 
-#pad1root, #pad3root {
-    width: 370px;
-    height: 460px;
-    overflow: hidden;
-    padding: 1em 0 0 0;
-}
-
-#pad1slider, #pad3slider {
-    width: 1110px;
-    position: relative;
-    left: -370px;
-}
-
-#pad3slider {
-    left: 0px;
-}
-
-#slider0, #slider1, #slider2, #p3slider0, #p3slider1, #followList {
-    float: left;
-    width: 370px;
-    height: 420px;
-}
-
-#followList {
-    padding: 2em 0 0 0;
-    height: 380px;
-    overflow: auto;
-}
-
-#slider1, #slider2 {
-    padding-top: 3em;
-}
 
 #pad1tab0 {
     float: right;
@@ -209,26 +177,8 @@ a img {
     margin-top: 1em;
 }
 
-paper-button.hover:hover {
-    background: #eee;
-}
 
-paper-button.coloredBlue {
-    color: #4285f4;
-}
 
-paper-button[raised].coloredBlue {
-    background: #4285f4;
-    color: #fff;
-}
-
-#loginSub div.button-content {
-    color: white !important;
-}
-
-#loginSub::shadow div.button-content {
-    color: white !important;
-}
 
 #pad1tab0 {
     text-transform: none !important;
@@ -238,60 +188,9 @@ paper-button[raised].coloredBlue {
     color: yellow;
 }
 
-paper-tabs::shadow #selectionBar {
-    background-color: rgb(68, 120, 170);
-}
 
-paper-tab::shadow #ink {
-    color: rgb(68, 120, 170);
-}
 
-#passwordRequirements, #forgotText {
-    margin: 1em 60px;
-    font-size: 0.8em;
-}
 
-#loginUsername, #loginPassword, #registerEmail, #registerPassword, #loginForgotPassword, #registerCaptcha, #forgotProgress, #registerProgress, #passwordProgress, #forgotEmail, #forgotButton, #profileName, #profileUsername, #profileEmail, #passwordOld, #passwordNew1, #passwordNew2 {
-    padding-left: 1em;
-    height: 2.5em;
-    width: 270px;
-    margin: 1em 50px;
-}
-
-#passwordOld {
-    margin: 3em 50px 0;
-}
-
-#passwordNew1, #passwordNew2 {
-    margin: 0.5em 50px 0;
-}
-
-#passwordRequirements {
-    margin-top: 2em;
-}
-
-#forgotEmail {
-    margin-top: 4em;
-}
-
-#forgotText {
-    margin: 2em 60px;
-}
-
-#loginUsername, #loginPassword, #registerEmail, #registerPassword, #registerCaptcha {
-    border-radius: 3px;
-    font-style: italic;
-    border: 1px solid #ccc;
-}
-
-#loginForgotPassword {
-    text-align: right;
-    padding: 35px 0 0 10px;
-}
-
-#user {
-    padding-right: 0.5em;
-}
 
 #user, .linkAdmin, .linkH, .linkTP, .linkOut {
     margin: 0 !important;
@@ -303,10 +202,7 @@ paper-tab::shadow #ink {
     padding-right: 0 !important;
 }
 
-#user::shadow .button-content {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
+
 
 .userTriangle {
     position: relative;
@@ -332,9 +228,7 @@ paper-tab::shadow #ink {
     background-color: #4478aa !important;
 }
 
-paper-ripple {
-    color: #4478aa !important;
-}
+
 
 .toast-text {
     color: white !important;
@@ -532,27 +426,16 @@ paper-ripple {
 .wysiwyg-font-size-small {
     font-size: 70%;
 }
-
-table {
-    border: none;
-    border-spacing: none;
-    border-collapse: collapse;
-    width: 100%;
-}
-
 .tabular {
     background-color: white;
 }
-
 .flex3 {
     flex-basis: 3em;
 }
-
 .articleActions {
     border-radius: 2px;
     margin: 0.5em 0 0.5em 0;
 }
-
 .articleActionsFlex {
     display: -webkit-box;
     display: -webkit-flex;
@@ -926,33 +809,11 @@ td {
     text-align: center;
 }
 
-paper-radio-group.blue paper-radio-button::shadow #ink[checked] {
-    color: #4285f4;
-}
-
-paper-radio-group.blue paper-radio-button::shadow #onRadio {
-    background-color: #4285f4;
-}
-
-paper-radio-group.blue paper-radio-button[checked]::shadow #offRadio {
-    border-color: #4285f4;
-}
-
-paper-radio-button {
-    display: block;
-}
 
 .paperNAV {
     height: 1.5em;
     width: 2em;
     margin: 0;
-}
-
-.paperNAV::shadow #ripple {
-    color: red;
-    height: 1.5em;
-    width: 2em;
-    border-radius: 2em;
 }
 
 .paperNAV #ripple {
@@ -962,11 +823,6 @@ paper-radio-button {
     border-radius: 2em;
 }
 
-.paperNAV::shadow .button-content {
-    height: 1.5em;
-    width: 2em;
-    padding: 0;
-}
 
 .paperNAV .button-content {
     height: 1.5em;
@@ -1059,33 +915,9 @@ paper-radio-button {
     width: 420px;
 }
 
-paper-slider::shadow #sliderBar::shadow #activeProgress {
-    background-color: red;
-}
 
-paper-slider #sliderBar #activeProgress {
-    background-color: red;
-}
 
-paper-slider #sliderBar #progressContainer {
-    height: 2px;
-}
 
-paper-slider::shadow #sliderKnobInner {
-    background-color: red;
-}
-
-paper-slider #sliderKnobInner {
-    background-color: red;
-}
-
-#page03age::shadow {
-    background-color: red;
-}
-
-paper-input::shadow #decorator::shadow .floated-label {
-    text-align: left;
-}
 
 #page04holder {
     text-align: left;
@@ -1239,14 +1071,7 @@ paper-input::shadow #decorator::shadow .floated-label {
     height: 120px;
 }
 
-#dropzone {
-    width: 360px;
-    height: 225px;
-    border-radius: 3px;
-    background-image: linear-gradient(-45deg, rgba(127, 255, 127, 0.3) 25%, transparent 25%, transparent 50%, rgba(127, 255, 127, 0.3) 50%, rgba(127, 255, 127, 0.3) 75%, transparent 75%, transparent);
-    background-size: 16px 16px;
-    position: relative;
-}
+
 
 #video, #canvas, #photoOnly, #showImage {
     width: 360px;
@@ -1351,10 +1176,7 @@ paper-input::shadow #decorator::shadow .floated-label {
     color: white !important;
 }
 
-#searchPaperButton::shadow div.button-content {
-    height: 0.65em;
-    color: white !important;
-}
+
 
 .form-container {
 }
@@ -1574,7 +1396,7 @@ fieldset legend {
     min-height: 2em;
 }
 
-}
+
 .styleButtonOld:hover, #wysihtml5-toolbar a:hover {
 }
 
@@ -1727,13 +1549,7 @@ ul#tabmenu li#active a {
     padding: 0 0 0 1em !important;
 }
 
-.emColumn paper-button {
-    margin: 0 !important;
-}
 
-.rezColumnTd paper-dropdown-menu {
-    margin: 0;
-}
 
 .rezleft {
     text-align: left;

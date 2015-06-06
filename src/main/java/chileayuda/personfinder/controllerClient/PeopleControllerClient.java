@@ -20,4 +20,9 @@ public class PeopleControllerClient {
     {
         return "index";
     }
+    @RequestMapping(value = "/agent",method = RequestMethod.GET)
+    public String getagent(ModelMap modelMap)
+    {
+        return "agent";
+    }
 }
