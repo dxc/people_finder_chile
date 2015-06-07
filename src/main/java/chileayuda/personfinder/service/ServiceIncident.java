@@ -71,8 +71,8 @@ public class ServiceIncident {
         // Return the incident itself
         return incident;
     }
-    public Incident getIncident(User user, String id) {
-        IncidentList incidentseMap = servicePeopleFinder.incidents.get(user.id);
+    public Incident getIncident(User usert, String id) {
+        IncidentList incidentseMap = servicePeopleFinder.incidents.get(usert.id);
         if (incidentseMap == null)
             return null;
         else

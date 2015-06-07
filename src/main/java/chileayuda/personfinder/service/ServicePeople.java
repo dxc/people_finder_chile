@@ -1,5 +1,6 @@
 package chileayuda.personfinder.service;
 
+import chileayuda.personfinder.model.Incident;
 import chileayuda.personfinder.model.People;
 import chileayuda.personfinder.model.PeopleList;
 import chileayuda.personfinder.model.User;
@@ -43,17 +44,17 @@ public class ServicePeople {
         return people;
     }
 
-    public People addPeople(User user, JSONObject agentJson) throws RuntimeException, PeopleFinderException {
+    public People addPeople(User user,Incident incident, JSONObject agentJson) throws RuntimeException, PeopleFinderException {
         // Parse the JSON for the people
         log.info("Parse the JSON for the people");
-        People people = People.fromJson(servicePeopleFinder, user, agentJson);
+        People people = People.fromJson(servicePeopleFinder, user, incident,agentJson);
         // Add it to table of people
         addPeople(people);
         // Return the new people
         return people;
     }
     public People addPeople(JSONObject agentJson) throws  RuntimeException, PeopleFinderException {
-        return addPeople(null, agentJson);
+        return addPeople(null,null, agentJson);
     }
 
     public People addPeople(People people) throws PeopleFinderException {

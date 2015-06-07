@@ -36,6 +36,7 @@ public class Incident {
     public PeopleFinder servicePeopleFinder;
     public User user;
 
+
     public Incident(PeopleFinder servicePeopleFinder,
                     User user,
                     String incidentId,

@@ -50,11 +50,23 @@ public class IncidentController {
         for (Incident incident : servicePeopleFinder.incidents.get(user.id)) {
             // Generate JSON for short summary of incident
             logger.info("Getting list of all  incident for user Id: " + incident.user.id);
-            JSONObject incidentJson = new JsonListMap();
-            incidentJson.put("user", incident.user.id);
-            incidentJson.put("Id", incident.incidentId);
-            incidentJson.put("incidentName", incident.incidentName);
-            incidentsArrayJson.put(incidentJson);
+            JSONObject IncidentJson = new JsonListMap();
+            IncidentJson.put("user", incident.user.id);
+            IncidentJson.put("incidentId", incident.incidentId);
+            IncidentJson.put("incidentName", incident.incidentName);
+            IncidentJson.put("shortName", incident.shortName);
+            IncidentJson.put("date", incident.date);
+            IncidentJson.put("incidenttype", incident. incidenttype);
+            IncidentJson.put("parentId", incident.parentId);
+            IncidentJson.put("searchId", incident.searchId);
+            IncidentJson.put("latitude", incident.latitude);
+            IncidentJson.put("longitude", incident. longitude);
+            IncidentJson.put("privategroup", incident.privategroup);
+            IncidentJson.put("closed", incident.closed);
+            IncidentJson.put("description", incident.description);
+            IncidentJson.put("street", incident.street);
+            IncidentJson.put("externalreport", incident. externalreport);
+            incidentsArrayJson.put(IncidentJson);
         }
         JSONObject peoplesJson = new JSONObject();
         peoplesJson.put("incidents", incidentsArrayJson);
@@ -72,11 +84,23 @@ public class IncidentController {
             // Get all incident for this user
             for (Incident incident : servicePeopleFinder.incidents.get(userIncidents.name)) {
                 // Generate JSON for short summary of incident
-                JSONObject incidentJson = new JsonListMap();
-                incidentJson.put("user", incident.user.id);
-                incidentJson.put("Id", incident.incidentId);
-                incidentJson.put("incidentName", incident.incidentName);
-                incidentsArrayJson.put(incidentJson);
+                JSONObject IncidentJson = new JsonListMap();
+                IncidentJson.put("user", incident.user.id);
+                IncidentJson.put("incidentId", incident.incidentId);
+                IncidentJson.put("incidentName", incident.incidentName);
+                IncidentJson.put("shortName", incident.shortName);
+                IncidentJson.put("date", incident.date);
+                IncidentJson.put("incidenttype", incident. incidenttype);
+                IncidentJson.put("parentId", incident.parentId);
+                IncidentJson.put("searchId", incident.searchId);
+                IncidentJson.put("latitude", incident.latitude);
+                IncidentJson.put("longitude", incident. longitude);
+                IncidentJson.put("privategroup", incident.privategroup);
+                IncidentJson.put("closed", incident.closed);
+                IncidentJson.put("description", incident.description);
+                IncidentJson.put("street", incident.street);
+                IncidentJson.put("externalreport", incident. externalreport);
+                incidentsArrayJson.put(IncidentJson);
             }
         }
         JSONObject peoplesJson = new JSONObject();

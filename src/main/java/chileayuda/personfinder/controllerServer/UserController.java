@@ -150,6 +150,13 @@ public class UserController {
             userJson.put("full_name", user.fullName);
             userJson.put("nick_name", user.nickName);
             userJson.put("email", user.email);
+            userJson.put("organization",  user.organization);
+            userJson.put("bio",  user.bio);
+            userJson.put("interests",  user.interests);
+            userJson.put("email",  user.email);
+            userJson.put("comment",  user.comment);
+            userJson.put("approved",  user.approved);
+
 
             usersArrayJson.put(userJson);
         }

@@ -150,7 +150,7 @@
                             <p> curl -X PUT 'http://localhost:8080/users/incident/{idUser}' -H Content-type:application/json -d</p>
                             <h2>   <u>3. Registro de Personas</u></h2>
                             <h2>   a.Crear Personas</h2>
-                            <p> curl -X POST 'http://localhost:8080/incident/{idincident}/people/{idUser}' -H Content-type:application/json -d</p>
+                            <p> curl -X POST 'http://localhost:8080/incident/{idincident}/people}' -H Content-type:application/json -d</p>
                             <div id="code3" class="syntaxhighlighter  jscript">
                                 <table border="0" cellpadding="0" cellspacing="0">
                                     <tbody>
@@ -191,7 +191,10 @@
 
                             </div>
                             <h2>  b. Obtener Personas Registrados</h2>
-                            <p> curl 'http://localhost:8080/incident/{idIncident}/peoples'</p>
+                            <p> curl 'http://localhost:8080/incident/{idincident}/people'</p>
+                            <p> curl 'http://localhost:8080/people/{id}'</p>
+                            <p> curl 'http://localhost:8080/peoples'</p>
+
                             <h2>  c. Actualizar Personas</h2>
                             <p> curl -X PUT 'http://localhost:8080/incident/{idincident}/people/{idUser}' -H Content-type:application/json -d</p>
 

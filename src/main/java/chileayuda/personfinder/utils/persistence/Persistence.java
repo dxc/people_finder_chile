@@ -148,8 +148,8 @@ public class Persistence {
 
     public void loadAllTables() throws PeopleFinderException, ParseException, TokenizerException, ParserException {
        loadUsers();
-        loadPeople();
         loadIncident();
+        loadPeople();
 
     }
 

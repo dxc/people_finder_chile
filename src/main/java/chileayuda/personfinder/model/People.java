@@ -37,8 +37,10 @@ public class People {
     public String home_state;
     public PeopleFinder servicePeopleFinder;
     public User user;
+    public Incident incident;
     public People(PeopleFinder servicePeopleFinder,
                   User user,
+                  Incident incident,
                   String Id,
                   String fullname,
                   String info_location,
@@ -57,6 +59,7 @@ public class People {
                   String home_state) {
         this.servicePeopleFinder=servicePeopleFinder;
         this.user=user==null?User.noUser:user;
+        this.incident=incident;
         this.Id = Id;
         this.fullname = fullname;
         this.info_location = info_location;
@@ -87,6 +90,7 @@ public class People {
         try {
             JSONObject PeopleJson = new JsonListMap();
             PeopleJson.put("user", user.id);
+            PeopleJson.put("incident", incident.incidentId);
             PeopleJson.put("Id", Id == null ? "" : Id);
             PeopleJson.put("fullname", fullname == null ? "" : fullname);
             PeopleJson.put("info_location", info_location == null ? "" : info_location);
@@ -179,18 +183,17 @@ public class People {
     }
 
     static public People fromJson(PeopleFinder servicePeopleFinder, String agentJsonSource) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
-        return fromJson(servicePeopleFinder, null, new JSONObject(agentJsonSource), false);
+        return fromJson(servicePeopleFinder, null,null, new JSONObject(agentJsonSource), false);
     }
 
-    static public People fromJson(PeopleFinder servicePeopleFinder, User user, JSONObject agentJson) throws PeopleFinderException {
-        return fromJson(servicePeopleFinder, user, agentJson, false);
+    static public People fromJson(PeopleFinder servicePeopleFinder, User user,Incident incident, JSONObject agentJson) throws PeopleFinderException {
+        return fromJson(servicePeopleFinder, user,incident, agentJson, false);
     }
 
     static public People fromJson(PeopleFinder servicePeopleFinder, JSONObject agentJson) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
-        return fromJson(servicePeopleFinder, null, agentJson, false);
+        return fromJson(servicePeopleFinder, null,null, agentJson, false);
     }
-    static public People fromJson(PeopleFinder servicePeopleFinder, User user, JSONObject agentJson, boolean update) throws PeopleFinderException {
-        // Parse the event
+    static public People fromJson(PeopleFinder servicePeopleFinder, User user, Incident incident, JSONObject agentJson, boolean update) throws PeopleFinderException {
 
         // Parse the users
 
@@ -205,6 +208,20 @@ public class People {
             if(user==User.noUser)
             {
                 throw  new PeopleFinderException("Message user id does not exist: '"+userId+"'");
+            }
+        }
+        // Parse the event
+        if(incident==null)
+        {
+            String incidentId=agentJson.optString("incident");
+            if(incidentId==null || incidentId.trim().length()==0)
+            {
+                throw new PeopleFinderException("Message incident Id ('incidentId') is missing");
+            }
+            incident = servicePeopleFinder.serviceIncident.getIncident(user,incidentId);
+            if(incident==null)
+            {
+                throw  new PeopleFinderException("Message incident id does not exist: '"+incident+"'");
             }
         }
 
@@ -309,12 +326,12 @@ public class People {
         }
         // Validate keys
         JsonUtils.validateKeys(agentJson, "People Message", new ArrayList<String>(Arrays.asList(
-                "user", "Id", "fullname", "info_location", "uri", "source_date",
+                "user","incident", "Id", "fullname", "info_location", "uri", "source_date",
                 "last_status", "status_author", "status_date", "status_found",
                 "cont", "last_known_location", "cont_note", "home_street","home_neighborhood","home_city","home_state")));
 
 
-        People agentPeople = new People(servicePeopleFinder,user, PeopleId, Peoplefullname, Peopleinfo_location, Peopleuri, Peoplesource_date,
+        People agentPeople = new People(servicePeopleFinder,user,incident,PeopleId, Peoplefullname, Peopleinfo_location, Peopleuri, Peoplesource_date,
                 Peoplelast_status, Peoplestatus_author, Peoplestatus_date, Peoplestatus_found,
                 Peoplecont, Peoplelast_known_locationt, Peoplecont_note, Peoplehome_street,Peoplehome_neighborhood,Peoplehome_city,Peoplehome_state);
 
