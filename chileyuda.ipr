@@ -15,6 +15,7 @@
             <element id="module-output" name="chileyuda" />
           </element>
           <element id="directory" name="lib">
+            <element id="library" level="project" name="Maven: org.ccil.cowan.tagsoup:tagsoup:1.2" />
             <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.4.2" />
             <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.4.2" />
             <element id="library" level="project" name="Maven: org.json:json2:2.0" />
@@ -312,6 +313,17 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ccil.cowan.tagsoup:tagsoup:1.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ccil/cowan/tagsoup/tagsoup/1.2/tagsoup-1.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ccil/cowan/tagsoup/tagsoup/1.2/tagsoup-1.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ccil/cowan/tagsoup/tagsoup/1.2/tagsoup-1.2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.codehaus.jackson:jackson-core-asl:1.4.2">

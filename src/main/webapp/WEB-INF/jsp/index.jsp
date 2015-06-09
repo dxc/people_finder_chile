@@ -119,7 +119,6 @@
                                             <div class="line number5 index4 alt4">5</div>
                                             <div class="line number6 index5 alt5">6</div>
                                             <div class="line number7 index6 alt6">7</div>
-
                                         </td>
                                         <td class="code">
                                             <div class="container">
@@ -134,10 +133,7 @@
                                                 </code></div>
                                                 <div class="line number7 index6 alt6"><code class="jscript plain">  closed;description;street; externalreport;
                                                 </code></div>
-
-
-                                            </div>
-
+                                          </div>
                                         </td>
                                     </tr>
                                     </tbody>

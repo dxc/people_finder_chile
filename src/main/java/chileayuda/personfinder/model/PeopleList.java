@@ -18,7 +18,7 @@ public class PeopleList  implements Iterable<People>{
     {
         for(People people:this)
         {
-            if(people.Id.equals(peopleId))
+            if(people.person_record_id.equals(peopleId))
             {
                 return true;
             }
@@ -29,7 +29,7 @@ public class PeopleList  implements Iterable<People>{
     {
         for(People people:this)
         {
-            if(people.Id.equals(peopleId))
+            if(people.person_record_id.equals(peopleId))
             {
                 return people;
             }

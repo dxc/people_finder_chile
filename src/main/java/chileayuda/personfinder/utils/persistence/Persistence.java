@@ -126,8 +126,8 @@ public class Persistence {
         put("users", user.id, user.toJson().toString());
     }
     public void put(People people) throws PeopleFinderException {
-        log.info("Init put people:" + people.Id + people.toJson().toString());
-        put("people",  people.Id, people.toJson().toString());
+        log.info("Init put people:" + people.person_record_id + people.toJson().toString());
+        put("people",  people.person_record_id, people.toJson().toString());
     }
     public void put(Incident incident) throws PeopleFinderException {
         log.info("Init put incident:" + incident.incidentId + incident.toJson().toString());

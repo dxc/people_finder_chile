@@ -19,63 +19,71 @@ import java.util.Arrays;
  */
 public class People {
     static final Logger log = Logger.getLogger(People.class);
-    public String Id;
-    public String fullname;
-    public String info_location;
-    public String uri;
+    public String person_record_id;
+    public String entry_date;
+    public String expiry_date;
+    public String author_name;
+    public String author_email;
+    public String source_name;
     public String source_date;
-    public String last_status;
-    public String status_author;
-    public String status_date;
-    public String status_found;
-    public String cont;
-    public String last_known_location;
-    public String cont_note;
+    public String source_url;
+    public String full_name;
+    public String given_name;
+    public String family_name;
+    public String alternate_names;
+    public String sex;
+    public String age;
     public String home_street;
-    public String home_neighborhood;
     public String home_city;
-    public String home_state;
+    public String description;
+    public String photo_url;
     public PeopleFinder servicePeopleFinder;
     public User user;
     public Incident incident;
+
     public People(PeopleFinder servicePeopleFinder,
                   User user,
                   Incident incident,
-                  String Id,
-                  String fullname,
-                  String info_location,
-                  String uri,
+                  String person_record_id,
+                  String entry_date,
+                  String expiry_date,
+                  String author_name,
+                  String author_email,
+                  String source_name,
                   String source_date,
-                  String last_status,
-                  String status_author,
-                  String status_date,
-                  String status_found,
-                  String cont,
-                  String last_known_location,
-                  String cont_note,
+                  String source_url,
+                  String full_name,
+                  String given_name,
+                  String family_name,
+                  String alternate_names,
+                  String sex,
+                  String age,
                   String home_street,
-                  String home_neighborhood,
                   String home_city,
-                  String home_state) {
-        this.servicePeopleFinder=servicePeopleFinder;
-        this.user=user==null?User.noUser:user;
-        this.incident=incident;
-        this.Id = Id;
-        this.fullname = fullname;
-        this.info_location = info_location;
-        this.uri = uri;
+                  String description,
+                  String photo_url
+    ) {
+        this.servicePeopleFinder = servicePeopleFinder;
+        this.user = user == null ? User.noUser : user;
+        this.incident = incident;
+        this.person_record_id = person_record_id;
+        this.entry_date = entry_date;
+        this.expiry_date = expiry_date;
+        this.author_name = author_name;
+        this.author_email = author_email;
+        this.source_name = source_name;
         this.source_date = source_date;
-        this.last_status = last_status;
-        this.status_author = status_author;
-        this.status_date = status_date;
-        this.status_found = status_found;
-        this.cont = cont;
-        this.last_known_location = last_known_location;
-        this.cont_note = cont_note;
+        this.source_url = source_url;
+        this.full_name = full_name;
+        this.given_name = given_name;
+        this.family_name = family_name;
+        this.alternate_names = alternate_names;
+        this.sex = sex;
+        this.age = age;
         this.home_street = home_street;
-        this.home_neighborhood = home_neighborhood;
         this.home_city = home_city;
-        this.home_state = home_state;
+        this.description = description;
+        this.photo_url = photo_url;
     }
 
     public JSONObject toJson() throws PeopleFinderException {
@@ -91,249 +99,250 @@ public class People {
             JSONObject PeopleJson = new JsonListMap();
             PeopleJson.put("user", user.id);
             PeopleJson.put("incident", incident.incidentId);
-            PeopleJson.put("Id", Id == null ? "" : Id);
-            PeopleJson.put("fullname", fullname == null ? "" : fullname);
-            PeopleJson.put("info_location", info_location == null ? "" : info_location);
-            PeopleJson.put("uri", uri == null ? "" : uri);
+            PeopleJson.put("person_record_id", person_record_id == null ? "" : person_record_id);
+            PeopleJson.put("entry_date", entry_date == null ? "" : entry_date);
+            PeopleJson.put("expiry_date", expiry_date == null ? "" : expiry_date);
+            PeopleJson.put("author_name", author_name == null ? "" : author_name);
+            PeopleJson.put("author_email", author_email == null ? "" : author_email);
+            PeopleJson.put("source_name", source_name == null ? "" : source_name);
             PeopleJson.put("source_date", source_date == null ? "" : source_date);
-            PeopleJson.put("last_status", last_status == null ? "" : last_status);
-            PeopleJson.put("status_author", status_author == null ? "" : status_author);
-            PeopleJson.put("status_date", status_date == null ? "" : status_date);
-            PeopleJson.put("status_found", status_found == null ? "" : status_found);
-            PeopleJson.put("cont", cont == null ? "" : cont);
-            PeopleJson.put("last_known_location", last_known_location == null ? "" : last_known_location);
-            PeopleJson.put("cont_note", cont_note == null ? "" : cont_note);
+            PeopleJson.put("source_url", source_url == null ? "" : source_url);
+            PeopleJson.put("full_name", full_name == null ? "" : full_name);
+            PeopleJson.put("given_name", given_name == null ? "" : given_name);
+            PeopleJson.put("family_name", family_name == null ? "" : family_name);
+            PeopleJson.put("alternate_names", alternate_names == null ? "" : alternate_names);
+            PeopleJson.put("sex", sex == null ? "" : sex);
+            PeopleJson.put("age", age == null ? "" : age);
             PeopleJson.put("home_street", home_street == null ? "" : home_street);
-            PeopleJson.put("home_neighborhood", home_neighborhood == null ? "" : home_neighborhood);
             PeopleJson.put("home_city", home_city == null ? "" : home_city);
-            PeopleJson.put("home_state", home_state == null ? "" : home_state);
-            return  PeopleJson;
+            PeopleJson.put("description", description == null ? "" : description);
+            PeopleJson.put("photo_url", photo_url == null ? "" : photo_url);
+
+
+            return PeopleJson;
         } catch (JSONException e) {
             e.printStackTrace();
             throw new PeopleFinderException("JSON exception in Message.toJson -" + e.getMessage());
         }
     }
+
     public void update(PeopleFinder servicePeopleFinder, People people) throws JSONException, PeopleFinderException {
-        if(people.Id!= null);
+        if (people.person_record_id != null) ;
         {
-            this.Id=people.Id;
+            this.person_record_id = people.person_record_id;
         }
-        if(people.fullname!=null );
+        if (people.entry_date != null) ;
         {
-            this.fullname=people.fullname;
+            this.entry_date = people.entry_date;
         }
-        if(people.info_location!= null  );
+        if (people.expiry_date != null) ;
         {
-            this.info_location=people.info_location;
+            this.expiry_date = people.expiry_date;
         }
-        if(people.uri!= null  );
+        if (people.author_name != null) ;
         {
-            this.uri=people.uri;
+            this.author_name = people.author_name;
         }
-        if(people.source_date!= null  );
+        if (people.author_email != null) ;
         {
-            this.source_date=people.source_date;
+            this.author_email = people.author_email;
         }
-        if(people.last_status!= null );
+        if (people.source_name != null) ;
         {
-            this.last_status=people.last_status;
+            this.source_name = people.source_name;
         }
-        if(people.status_author!= null  );
+        if (people.source_date != null) ;
         {
-            this.status_author=people.status_author;
+            this.source_date = people.source_date;
         }
-        if(people.status_date!= null );
+        if (people.source_url != null) ;
         {
-            this.status_date=people.status_date;
+            this.source_url = people.source_url;
         }
-        if(people.status_found!= null );
+        if (people.full_name != null) ;
         {
-            this.status_found=people.status_found;
+            this.full_name = people.full_name;
         }
-        if(people.cont!= null);
+        if (people.given_name != null) ;
         {
-            this.cont=people.cont;
+            this.given_name = people.given_name;
         }
-        if(people.last_known_location!= null);
+        if (people.family_name != null) ;
         {
-            this.last_known_location=people.last_known_location;
+            this.family_name = people.family_name;
         }
-        if(people.cont_note!= null);
+        if (people.alternate_names != null) ;
         {
-            this.cont_note=people.cont_note;
+            this.alternate_names = people.alternate_names;
         }
-        if(people.home_street!= null);
+        if (people.sex != null) ;
         {
-            this.home_street=people.home_street;
+            this.sex = people.sex;
         }
-        if(people.home_neighborhood!= null);
+        if (people.age != null) ;
         {
-            this.home_neighborhood=people.home_neighborhood;
+            this.age = people.age;
         }
-        if(people.home_city!= null );
+        if (people.home_street != null) ;
         {
-            this.home_city=people.home_city;
+            this.home_street = people.home_street;
         }
-        if(people.home_state!= null );
+        if (people.home_city != null) ;
         {
-            this.home_state=people.home_state;
+            this.home_city = people.home_city;
+        }
+        if (people.description != null) ;
+        {
+            this.description = people.description;
+        }
+        if (people.photo_url != null) ;
+        {
+            this.photo_url = people.photo_url;
         }
 
         servicePeopleFinder.persistence.put(this);
     }
 
     static public People fromJson(PeopleFinder servicePeopleFinder, String agentJsonSource) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
-        return fromJson(servicePeopleFinder, null,null, new JSONObject(agentJsonSource), false);
+        return fromJson(servicePeopleFinder, null, null, new JSONObject(agentJsonSource), false);
     }
 
-    static public People fromJson(PeopleFinder servicePeopleFinder, User user,Incident incident, JSONObject agentJson) throws PeopleFinderException {
-        return fromJson(servicePeopleFinder, user,incident, agentJson, false);
+    static public People fromJson(PeopleFinder servicePeopleFinder, User user, Incident incident, JSONObject agentJson) throws PeopleFinderException {
+        return fromJson(servicePeopleFinder, user, incident, agentJson, false);
     }
 
     static public People fromJson(PeopleFinder servicePeopleFinder, JSONObject agentJson) throws PeopleFinderException, JSONException, ParseException, TokenizerException, ParserException {
-        return fromJson(servicePeopleFinder, null,null, agentJson, false);
+        return fromJson(servicePeopleFinder, null, null, agentJson, false);
     }
+
     static public People fromJson(PeopleFinder servicePeopleFinder, User user, Incident incident, JSONObject agentJson, boolean update) throws PeopleFinderException {
 
         // Parse the users
 
-        if(user==null)
-        {
-            String userId=agentJson.optString("user");
-            if(userId==null || userId.trim().length()==0)
-            {
+        if (user == null) {
+            String userId = agentJson.optString("user");
+            if (userId == null || userId.trim().length() == 0) {
                 throw new PeopleFinderException("Message user id ('user') is missing");
             }
             user = servicePeopleFinder.serviceUser.getUser(userId);
-            if(user==User.noUser)
-            {
-                throw  new PeopleFinderException("Message user id does not exist: '"+userId+"'");
+            if (user == User.noUser) {
+                throw new PeopleFinderException("Message user id does not exist: '" + userId + "'");
             }
         }
         // Parse the event
-        if(incident==null)
-        {
-            String incidentId=agentJson.optString("incident");
-            if(incidentId==null || incidentId.trim().length()==0)
-            {
+        if (incident == null) {
+            String incidentId = agentJson.optString("incident");
+            if (incidentId == null || incidentId.trim().length() == 0) {
                 throw new PeopleFinderException("Message incident Id ('incidentId') is missing");
             }
-            incident = servicePeopleFinder.serviceIncident.getIncident(user,incidentId);
-            if(incident==null)
-            {
-                throw  new PeopleFinderException("Message incident id does not exist: '"+incident+"'");
+            incident = servicePeopleFinder.serviceIncident.getIncident(user, incidentId);
+            if (incident == null) {
+                throw new PeopleFinderException("Message incident id does not exist: '" + incident + "'");
             }
         }
 
-        // Parse the People Id
-        String PeopleId=agentJson.optString("Id",null);
-        if(!update &&(PeopleId==null) || PeopleId.trim().length()==0)
-        {
-            PeopleId="";
-        }
-        // Parse the People fullname
-        String Peoplefullname=agentJson.optString("fullname",null);
-        if(!update &&(Peoplefullname==null) || Peoplefullname.trim().length()==0)
-        {
-            Peoplefullname="";
+        // Parse the People person_record_id
+        String Peopleperson_record_id= agentJson.optString("person_record_id", null);
+        if (!update && (Peopleperson_record_id == null) || Peopleperson_record_id.trim().length() == 0) {
+            Peopleperson_record_id = "";
         }
 
-        // Parse the People info_location
-        String Peopleinfo_location=agentJson.optString("info_location",null);
-        if(!update &&(Peopleinfo_location==null) || Peopleinfo_location.trim().length()==0)
-        {
-            Peopleinfo_location="";
+        // Parse the People  entry_date;
+        String Peopleentry_date= agentJson.optString("entry_date", null);
+        if (!update && ( Peopleentry_date== null) || Peopleentry_date.trim().length() == 0) {
+            Peopleentry_date = "";
         }
-        // Parse the People uri
-        String Peopleuri=agentJson.optString("uri",null);
-        if(!update &&(Peopleuri==null) || Peopleuri.trim().length()==0)
-        {
-            Peopleuri="";
+        // Parse the People  expiry_date;
+        String Peopleexpiry_date= agentJson.optString("expiry_date", null);
+        if (!update && ( Peopleexpiry_date== null) || Peopleexpiry_date.trim().length() == 0) {
+            Peopleexpiry_date = "";
         }
-        // Parse the People source_date
-        String Peoplesource_date=agentJson.optString("source_date",null);
-        if(!update &&(Peoplesource_date==null) || Peoplesource_date.trim().length()==0)
-        {
-            Peoplesource_date="";
+        // Parse the People  author_name;
+        String Peopleauthor_name= agentJson.optString("author_name", null);
+        if (!update && ( Peopleauthor_name== null) || Peopleauthor_name.trim().length() == 0) {
+            Peopleauthor_name= "";
+        }
+        // Parse the People  author_email;
+        String Peopleauthor_email= agentJson.optString("author_email", null);
+        if (!update && (Peopleauthor_email == null) || Peopleauthor_email.trim().length() == 0) {
+            Peopleauthor_email = "";
+        }
+        // Parse the People  source_name;
+        String Peoplesource_name= agentJson.optString("source_name", null);
+        if (!update && (Peoplesource_name == null) || Peoplesource_name.trim().length() == 0) {
+            Peoplesource_name= "";
+        }
+        // Parse the People  source_date;
+        String Peoplesource_date= agentJson.optString("source_date", null);
+        if (!update && ( Peoplesource_date== null) || Peoplesource_date.trim().length() == 0) {
+            Peoplesource_date= "";
+        }
+        // Parse the People  source_url;
+        String Peoplesource_url= agentJson.optString("source_url", null);
+        if (!update && (Peoplesource_url == null) || Peoplesource_url.trim().length() == 0) {
+            Peoplesource_url= "";
+        }
+        // Parse the People  full_name;
+        String Peoplefull_name= agentJson.optString("full_name", null);
+        if (!update && ( Peoplefull_name== null) || Peoplefull_name.trim().length() == 0) {
+            Peoplefull_name = "";
+        }
+        // Parse the People  given_name;
+        String Peoplegiven_name= agentJson.optString("given_name", null);
+        if (!update && (Peoplegiven_name == null) || Peoplegiven_name.trim().length() == 0) {
+            Peoplegiven_name= "";
+        }
+        // Parse the People  family_name;
+        String Peoplefamily_name= agentJson.optString("family_name", null);
+        if (!update && ( Peoplefamily_name== null) || Peoplefamily_name.trim().length() == 0) {
+            Peoplefamily_name= "";
+        }
+        // Parse the People  alternate_names;
+        String Peoplealternate_names= agentJson.optString("alternate_names", null);
+        if (!update && ( Peoplealternate_names== null) || Peoplealternate_names.trim().length() == 0) {
+            Peoplealternate_names= "";
+        }
+        // Parse the People  sex;
+        String Peoplesex= agentJson.optString("sex", null);
+        if (!update && ( Peoplesex== null) || Peoplesex.trim().length() == 0) {
+            Peoplesex= "";
+        }
+        // Parse the People  age;
+        String Peopleage= agentJson.optString("age", null);
+        if (!update && ( Peopleage== null) || Peopleage.trim().length() == 0) {
+            Peopleage= "";
+        }
+        // Parse the People  home_street;
+        String Peoplehome_street= agentJson.optString("home_street", null);
+        if (!update && ( Peoplehome_street== null) || Peoplehome_street.trim().length() == 0) {
+            Peoplehome_street= "";
+        }
+        // Parse the People  home_city;
+        String Peoplehome_city= agentJson.optString("home_city", null);
+        if (!update && ( Peoplehome_city== null) || Peoplehome_city.trim().length() == 0) {
+            Peoplehome_city = "";
+        }
+        // Parse the People  description;
+        String Peopledescription= agentJson.optString("description", null);
+        if (!update && ( Peopledescription== null) || Peopledescription.trim().length() == 0) {
+            Peopledescription= "";
+        }
+        // Parse the People  photo_url;
+        String Peoplephoto_url= agentJson.optString("photo_url", null);
+        if (!update && ( Peoplephoto_url== null) || Peoplephoto_url.trim().length() == 0) {
+            Peoplephoto_url= "";
         }
 
-        // Parse the People last_status
-        String Peoplelast_status=agentJson.optString("last_status",null);
-        if(!update &&(Peoplelast_status==null) || Peoplelast_status.trim().length()==0)
-        {
-            Peoplelast_status="";
-        }
-        // Parse the People status_author
-        String Peoplestatus_author=agentJson.optString("status_author",null);
-        if(!update &&(Peoplestatus_author==null) || Peoplestatus_author.trim().length()==0)
-        {
-            Peoplestatus_author="";
-        }
-        // Parse the People status_date
-        String Peoplestatus_date=agentJson.optString("status_date",null);
-        if(!update &&(Peoplestatus_date==null) || Peoplestatus_date.trim().length()==0)
-        {
-            Peoplestatus_date="";
-        }
-
-        // Parse the People status_found
-        String Peoplestatus_found=agentJson.optString("status_found",null);
-        if(!update &&(Peoplestatus_found==null) || Peoplestatus_found.trim().length()==0)
-        {
-            Peoplestatus_found="";
-        }
-        // Parse the People cont
-        String Peoplecont=agentJson.optString("cont",null);
-        if(!update &&(Peoplecont==null) || Peoplecont.trim().length()==0)
-        {
-            Peoplecont="";
-        }
-        // Parse the People last_known_location
-        String Peoplelast_known_locationt=agentJson.optString("last_known_location",null);
-        if(!update &&(Peoplelast_known_locationt==null) || Peoplelast_known_locationt.trim().length()==0)
-        {
-            Peoplelast_known_locationt="";
-        }
-        // Parse the People cont_note
-        String Peoplecont_note=agentJson.optString("cont_note",null);
-        if(!update &&(Peoplecont_note==null) || Peoplecont_note.trim().length()==0)
-        {
-            Peoplecont_note="";
-        }
-        // Parse the People home_street
-        String Peoplehome_street=agentJson.optString("home_street",null);
-        if(!update &&(Peoplehome_street==null) || Peoplehome_street.trim().length()==0)
-        {
-            Peoplehome_street="";
-        }
-        // Parse the People home_neighborhood
-        String Peoplehome_neighborhood=agentJson.optString("home_neighborhood",null);
-        if(!update &&(Peoplehome_neighborhood==null) || Peoplehome_neighborhood.trim().length()==0)
-        {
-            Peoplehome_neighborhood="";
-        }
-        // Parse the People home_city
-        String Peoplehome_city=agentJson.optString("home_city",null);
-        if(!update &&(Peoplehome_city==null) || Peoplehome_city.trim().length()==0)
-        {
-            Peoplehome_city="";
-        }
-        // Parse the People home_state
-        String Peoplehome_state=agentJson.optString("home_state",null);
-        if(!update &&(Peoplehome_state==null) || Peoplehome_state.trim().length()==0)
-        {
-            Peoplehome_state="";
-        }
         // Validate keys
         JsonUtils.validateKeys(agentJson, "People Message", new ArrayList<String>(Arrays.asList(
-                "user","incident", "Id", "fullname", "info_location", "uri", "source_date",
-                "last_status", "status_author", "status_date", "status_found",
-                "cont", "last_known_location", "cont_note", "home_street","home_neighborhood","home_city","home_state")));
+                "user", "incident", "person_record_id", "entry_date", "expiry_date", "author_name", "author_email",
+                "source_name", "source_date", "source_url", "full_name",
+                "given_name", "family_name", "alternate_names", "sex", "age", "home_street", "home_city","description","photo_url")));
 
 
-        People agentPeople = new People(servicePeopleFinder,user,incident,PeopleId, Peoplefullname, Peopleinfo_location, Peopleuri, Peoplesource_date,
-                Peoplelast_status, Peoplestatus_author, Peoplestatus_date, Peoplestatus_found,
-                Peoplecont, Peoplelast_known_locationt, Peoplecont_note, Peoplehome_street,Peoplehome_neighborhood,Peoplehome_city,Peoplehome_state);
+        People agentPeople = new People(servicePeopleFinder, user, incident,  Peopleperson_record_id, Peopleentry_date, Peopleexpiry_date, Peopleauthor_name, Peopleauthor_email,
+                Peoplesource_name, Peoplesource_date, Peoplesource_url, Peoplefull_name,
+                Peoplegiven_name, Peoplefamily_name, Peoplealternate_names, Peoplesex, Peopleage, Peoplehome_street, Peoplehome_city,Peopledescription,Peoplephoto_url);
 
         // Return the new people
         return agentPeople;
