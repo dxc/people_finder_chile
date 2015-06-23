@@ -123,6 +123,9 @@ public class ServicePeople {
         try {
 
             String url = String.format("https://chileagils.appspot.com/norte/feeds/person?key=5Gr3C1ADeFyjqqRi");
+            //https://chileagils.appspot.com/test/feeds/person?key=tKWAGCbskIyPkeaV
+            //https://chileagils.appspot.com/norte/api/search?key=5Gr3C1ADeFyjqqRi&id=norte.personfinder.google.org/person.6060724988149760
+            //https://chileagils.appspot.com/norte/api/search?key=5Gr3C1ADeFyjqqRi&q=rodolfo
             doc = PageGetter.getDocument(url);
             if (doc.hasChildNodes()) {
 
@@ -150,8 +153,7 @@ public class ServicePeople {
             JSONObject PeopleJson = new JsonListMap();
             for (int i = 0; i < length; i ++) {
                 Node c = node.getChildNodes().item(i);
-               // System.out.println("NAme:"+ c.getNodeName().trim()+ " : "+c.getTextContent());
-                //  textValue.append(c.getNodeName().trim()+ " : "+c.getTextContent());
+
 
                 if(c.getNodeName().trim().equals("pfif:person_record_id"))
                 {

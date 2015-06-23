@@ -25,4 +25,9 @@ public class PeopleControllerClient {
     {
         return "agent";
     }
+    @RequestMapping(value = "/person",method = RequestMethod.GET)
+    public String getperson(ModelMap modelMap)
+    {
+        return "person";
+    }
 }

@@ -1,6 +1,6 @@
 /**
  * Copyright 2012 John W. Krupansky d/b/a Base Technology
- *
+ * Copyright 2015 Teofilo Chambilla dcc U Chile
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
