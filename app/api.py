@@ -258,13 +258,14 @@ class Read(utils.BaseHandler):
     https_required = True
 
     def get(self):
-        if self.config.read_auth_key_required and not (
-            self.auth and self.auth.read_permission):
-            self.info(
-                403,
-                message='Missing or invalid authorization key',
-                style='plain')
-            return
+        # # Se comenta la validacion del API KEY
+       # if self.config.read_auth_key_required and not (
+         #   self.auth and self.auth.read_permission):
+          #  self.info(
+           #     403,
+           #     message='Missing or invalid authorization key',
+           #     style='plain')
+           # return
 
         pfif_version = self.params.version
 
@@ -371,13 +372,14 @@ class Search(utils.BaseHandler):
     https_required = False
 
     def get(self):
-        if self.config.search_auth_key_required and not (
-            self.auth and self.auth.search_permission):
-            self.info(
-                403,
-                message='Missing or invalid authorization key',
-                style='plain')
-            return
+    	# Se comenta la validacion del API KEY
+        # if self.config.search_auth_key_required and not (
+        #     self.auth and self.auth.search_permission):
+        #     self.info(
+         #        403,
+        #         message='Missing or invalid authorization key',
+        #         style='plain')
+        #     return
 
         pfif_version = self.params.version
 
@@ -477,12 +479,14 @@ def fetch_all(query):
 
 class Stats(utils.BaseHandler):
     def get(self):
-        if not (self.auth and self.auth.stats_permission):
-            self.info(
-                403,
-                message='Missing or invalid authorization key',
-                style='plain')
-            return
+    	# Se comenta la validacion del API KEY
+    	
+        #if not (self.auth and self.auth.stats_permission):
+        #    self.info(
+         #       403,
+         #       message='Missing or invalid authorization key',
+         #       style='plain')
+         #   return
 
         person_counts = model.Counter.get_all_counts(self.repo, 'person')
         note_counts = model.Counter.get_all_counts(self.repo, 'note')
