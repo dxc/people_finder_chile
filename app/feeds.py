@@ -67,12 +67,11 @@ class Person(utils.BaseHandler):
     https_required = True
 
     def get(self):
-    	# Se comenta la validacion del API KEY
-        #if self.config.read_auth_key_required and not (
-         #   self.auth and self.auth.read_permission):
-         #   self.response.set_status(403)
-         #   self.write('Missing or invalid authorization key\n')
-          #  return
+        if self.config.read_auth_key_required and not (
+            self.auth and self.auth.read_permission):
+            self.response.set_status(403)
+            self.write('Missing or invalid authorization key\n')
+            return
 
         pfif_version = self.params.version
         atom_version = atom.ATOM_PFIF_VERSIONS.get(pfif_version.version)
@@ -133,12 +132,11 @@ class Note(utils.BaseHandler):
               self.response.set_status(403)
               self.write('HTTPS is required.\n')
               return
-              # Se comenta la validacion del API KEY
-         #  if self.config.read_auth_key_required and not (
-          #     self.auth and self.auth.read_permission):
-          #     self.response.set_status(403)
-          #     self.write('Missing or invalid authorization key\n')
-         #      return
+          if self.config.read_auth_key_required and not (
+              self.auth and self.auth.read_permission):
+              self.response.set_status(403)
+              self.write('Missing or invalid authorization key\n')
+              return
 
         pfif_version = self.params.version
         atom_version = atom.ATOM_PFIF_VERSIONS.get(pfif_version.version)
