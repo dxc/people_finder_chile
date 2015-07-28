@@ -200,7 +200,7 @@ def get_repo_options(request, lang):
     for repo in model.Repo.list_launched():
         titles = config.get_for_repo(repo, 'repo_titles', {})
         default_title = (titles.values() or ['?'])[0]
-        title = titles.get(lang, titles.get('en', default_title))
+        title = titles.get(lang, titles.get('es', default_title))
         url = utils.get_repo_url(request, repo)
         test_mode = config.get_for_repo(repo, 'test_mode')
         options.append(utils.Struct(repo=repo, title=title, url=url,
@@ -212,7 +212,7 @@ def get_language_options(request, config=None):
     return [{'lang': lang,
              'endonym': const.LANGUAGE_ENDONYMS.get(lang, '?'),
              'url': utils.set_url_param(request.url, 'lang', lang)}
-            for lang in (config and config.language_menu_options or ['en'])]
+            for lang in (config and config.language_menu_options or ['es'])]
 
 def get_secret(name):
     """Gets a secret from the datastore by name, or returns None if missing."""
@@ -226,7 +226,7 @@ def get_localized_message(localized_messages, lang, default):
     not available, or to a default message if English is not available."""
     if not isinstance(localized_messages, dict):
         return default
-    return localized_messages.get(lang, localized_messages.get('en', default))
+    return localized_messages.get(lang, localized_messages.get('es', default))
 
 def get_hidden_input_tags_for_preserved_query_params(request):
     """Gets HTML with <input type="hidden"> tags to preserve query parameters
